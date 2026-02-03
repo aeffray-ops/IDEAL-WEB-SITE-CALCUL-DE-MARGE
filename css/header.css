@@ -1,0 +1,620 @@
+   HEADER PRINCIPAL - TOUTE LARGEUR
+   Police : Poppins (héritée de style.css)
+======================================== */
+
+:root {
+  --rouge-bordeaux: #6D071A;
+  --or: #FFB800;
+  --blanc: #FFFFFF;
+  --gris-clair: #F5F5F5;
+  --gris-moyen: #E5E5E5;
+  --texte-sombre: #2D0202;
+}
+
+/* ========================================
+   STACKING (burger au-dessus du bandeau)
+   Bandeau: 30000
+   Header : 25000
+   Burger : 35000
+======================================== */
+
+#bandeau-evenement,
+.bandeau-evenement,
+.bandeau-evenements {
+  z-index: 40000 !important; /* Au-dessus du burger pour que "Je m'inscris" soit cliquable */
+}
+
+.header-principal {
+  position: sticky;
+  top: 0;
+  z-index: 25000 !important;
+  background: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: visible !important;
+  border-bottom: 1px solid var(--gris-moyen);
+}
+
+/* ========================================
+   CONTAINERS
+======================================== */
+
+/* Flex : permettre la compression de la nav sans pousser les actions hors écran */
+.header-container-full,
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  height: 80px;
+  max-width: 100%;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  overflow: visible !important;
+  gap: 30px;
+  min-width: 0;
+}
+
+.header-container { max-width: 1400px; margin: 0 auto; }
+
+/* ========================================
+   LOGO
+======================================== */
+
+.header-logo { flex-shrink: 0; }
+
+.logo-img {
+  height: 55px;
+  width: auto;
+  transition: transform 0.3s ease;
+}
+
+.logo-img:hover { transform: scale(1.05); }
+
+/* ========================================
+   NAV DESKTOP
+======================================== */
+
+#mainNav.header-nav-full {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  flex: 1 1 auto;
+  justify-content: center;
+  min-width: 0;
+}
+
+.nav-link {
+  color: var(--texte-sombre);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 8px 5px;
+  position: relative;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.nav-link:hover { color: var(--rouge-bordeaux); }
+
+.nav-link.active { font-weight: 700; color: var(--rouge-bordeaux); }
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--rouge-bordeaux);
+  border-radius: 2px;
+}
+
+/* Flèche dropdown */
+.nav-arrow {
+  font-size: 10px;
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.nav-item-dropdown:hover .nav-arrow { transform: rotate(180deg); }
+
+/* Dropdown desktop */
+.nav-item-dropdown { position: relative; }
+
+/* Dropdown : jamais transparent, z-index au-dessus du header */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  min-width: 240px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  padding: 10px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 26000;
+  margin-top: 10px;
+}
+
+.nav-item-dropdown:hover .dropdown-menu {
+  opacity: 1 !important;
+  visibility: visible;
+  transform: translateY(0);
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 12px 20px;
+  color: var(--texte-sombre);
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+}
+
+.dropdown-menu a:hover {
+  background: var(--gris-clair);
+  color: var(--rouge-bordeaux);
+  border-left-color: var(--rouge-bordeaux);
+  padding-left: 23px;
+}
+
+/* ========================================
+   CTA + ACTIONS (profil + burger)
+======================================== */
+
+.header-actions {
+  display: flex !important;
+  align-items: center;
+  gap: 15px;
+  flex: 0 0 auto;
+  margin-left: auto;
+  flex-shrink: 0 !important;
+  white-space: nowrap;
+  position: relative;
+  z-index: 26000;
+}
+
+.header-cta { flex-shrink: 0; }
+
+.btn-rejoindre {
+  background: var(--rouge-bordeaux);
+  color: var(--blanc);
+  padding: 12px 28px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(109, 7, 26, 0.25);
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.btn-rejoindre:hover {
+  background: #8B0920;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(109, 7, 26, 0.35);
+}
+
+/* ========================================
+   CTA "INSCRIPTION WEBINAIRE" (bordeaux + jaune)
+   Même forme que btn-rejoindre
+======================================== */
+.btn-webinaire {
+  background: #6D071A !important;
+  color: #FFB800 !important;
+  padding: 12px 28px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(109, 7, 26, 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  border: none;
+}
+.btn-webinaire:hover {
+  background: #8B0920 !important;
+  color: #FFB800 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(109, 7, 26, 0.35);
+}
+
+/* Marquee viewport */
+.webinaire-marquee {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 190px;
+}
+.webinaire-marquee__track {
+  display: inline-block;
+  padding-left: 100%;
+  animation: webinaireMarquee 10s linear infinite;
+  will-change: transform;
+}
+.webinaire-marquee__track.is-paused {
+  animation-play-state: paused;
+}
+@keyframes webinaireMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Pages webinaire : masquer CTA et bandeau si présents */
+body.page-webinaire .btn-webinaire,
+body.page-webinaire .bandeau-evenement,
+body.page-webinaire .bandeau-evenements {
+  display: none !important;
+}
+
+/* FIX: page webinaire — bouton Rejoindre le réseau doit rester blanc/noir */
+body.page-webinaire .btn-rejoindre,
+body.page-webinaire a.btn-rejoindre,
+body.page-webinaire .header-actions .btn-rejoindre {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid rgba(0, 0, 0, 0.15) !important;
+}
+body.page-webinaire .btn-rejoindre:hover,
+body.page-webinaire .btn-rejoindre:focus,
+body.page-webinaire .btn-rejoindre:active {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border-color: rgba(0, 0, 0, 0.25) !important;
+}
+
+/* ========================================
+   PROFIL DROPDOWN (clic via .is-open)
+======================================== */
+
+.header-profil {
+  position: relative;
+  margin-left: 15px;
+  flex-shrink: 0 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.btn-profil {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  min-height: 42px;
+  border-radius: 50%;
+  border: 2px solid #6D071A;
+  background: #FFFFFF !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  padding: 0;
+  position: relative;
+  z-index: 10;
+}
+
+.btn-profil:hover {
+  background: #6D071A !important;
+  border-color: #6D071A;
+  transform: scale(1.05);
+}
+
+.btn-profil svg,
+.btn-profil i {
+  font-size: 18px;
+  color: #6D071A;
+  transition: color 0.3s ease;
+}
+
+.btn-profil:hover svg,
+.btn-profil:hover i { color: #FFFFFF; }
+
+.btn-profil svg { width: 22px; height: 22px; }
+
+.dropdown-profil,
+.profil-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0 !important;
+  left: auto !important;
+  min-width: 220px;
+  max-width: 280px;
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  border: 1px solid #E0E0E0;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  display: none;
+  z-index: 999999 !important;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  opacity: 1 !important;
+}
+
+.dropdown-profil.is-open,
+.profil-dropdown.is-open { display: block; }
+
+.profil-dropdown::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  right: 14px;
+  width: 14px;
+  height: 14px;
+  background: #FFFFFF !important;
+  border-left: 1px solid #E0E0E0;
+  border-top: 1px solid #E0E0E0;
+  transform: rotate(45deg);
+}
+
+.dropdown-profil a,
+.profil-dropdown a,
+.profil-dropdown-item {
+  display: block;
+  padding: 12px 14px;
+  color: #111;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid #F0F0F0;
+  white-space: nowrap;
+}
+
+.dropdown-profil a:last-child,
+.profil-dropdown a:last-child { border-bottom: none; }
+
+.dropdown-profil a:hover,
+.profil-dropdown a:hover,
+.profil-dropdown-item:hover {
+  background: rgba(109, 7, 26, 0.08);
+  color: #6D071A;
+}
+
+/* Liens dropdown tactiles sur mobile */
+.profil-dropdown-item,
+.dropdown-profil a,
+.profil-dropdown a {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 14px 18px;
+  -webkit-tap-highlight-color: rgba(109, 7, 26, 0.1);
+}
+
+/* ========================================
+   BURGER OFFICIEL (#menuToggle)
+   Desktop: caché / Mobile: visible
+======================================== */
+
+#menuToggle { display: none; }
+
+@media (max-width: 992px) {
+  #menuToggle {
+    display: inline-flex !important;
+    flex-direction: column;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 46px !important;
+    height: 46px !important;
+    padding: 10px !important;
+
+    background: #fff !important;
+    border: 1px solid rgba(109, 7, 26, 0.25) !important;
+    border-radius: 12px !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    position: relative !important;
+    z-index: 35000 !important;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  #menuToggle span {
+    display: block !important;
+    width: 24px !important;
+    height: 3px !important;
+    margin: 4px 0 !important;
+    background: #6D071A !important;
+    border-radius: 999px !important;
+  }
+}
+
+/* ========================================
+   MENU MOBILE (#mainNav)
+   Ouverture via: #mainNav.is-open
+======================================== */
+
+@media (max-width: 992px) {
+  /* cacher CTA desktop sur mobile (optionnel) */
+  .header-actions .btn-rejoindre { display: none; }
+
+  #mainNav.header-nav-full {
+    display: none; /* fermé par défaut */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: #FFFFFF !important;
+    background-color: #FFFFFF !important;
+    padding: 16px;
+    border-top: 1px solid #E0E0E0;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    z-index: 26000; /* sous burger, sous bandeau */
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* ouvert si JS ajoute .is-open sur #mainNav */
+  #mainNav.header-nav-full.is-open {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* liens mobile */
+  #mainNav.header-nav-full .nav-link,
+  #mainNav.header-nav-full .nav-item-dropdown > .nav-link {
+    width: 100%;
+    text-align: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--gris-clair);
+  }
+
+  #mainNav.header-nav-full .nav-link.active::after { display: none; }
+
+  /* dropdown mobile */
+  #mainNav.header-nav-full .dropdown-menu {
+    position: static;
+    opacity: 1 !important;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    background: #F5F5F5 !important;
+    background-color: #F5F5F5 !important;
+    display: none;
+    margin-top: 0;
+  }
+
+  /* si ton JS met .active sur le parent dropdown */
+  #mainNav.header-nav-full .nav-item-dropdown.active .dropdown-menu { display: block; }
+}
+
+/* ========================================
+   RESPONSIVE (ajustements)
+======================================== */
+
+@media (max-width: 1200px) {
+  #mainNav.header-nav-full { gap: 25px; }
+  .nav-link { font-size: 14px; }
+}
+
+@media (max-width: 768px) {
+  .header-container-full,
+  .header-container {
+    padding: 0 15px;
+    height: 70px;
+  }
+
+  .logo-img { height: 45px; }
+
+  .header-actions {
+    gap: 10px;
+    display: flex !important;
+    visibility: visible !important;
+  }
+
+  .header-profil {
+    margin-left: 10px;
+    order: 5;
+  }
+
+  .btn-profil {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    min-height: 38px;
+  }
+
+  .btn-profil svg { width: 18px; height: 18px; }
+
+  .dropdown-profil,
+  .profil-dropdown {
+    position: fixed !important;
+    top: 70px !important;
+    right: 10px !important;
+    left: auto !important;
+    width: calc(100vw - 20px);
+    max-width: 280px;
+    z-index: 999999 !important;
+    background: #FFFFFF !important;
+    background-color: #FFFFFF !important;
+  }
+
+  .menu-toggle,
+  .burger-menu,
+  .burger {
+    margin-left: 15px;
+    order: 10;
+  }
+}
+
+/* ========================================
+   BOUTON RETOUR (si utilisé)
+======================================== */
+
+.btn-retour {
+  position: fixed;
+  top: 100px;
+  left: 20px;
+  background: var(--rouge-bordeaux);
+  color: var(--blanc);
+  border: none;
+  border-radius: 25px;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(109, 7, 26, 0.3);
+  transition: all 0.3s ease;
+  z-index: 999;
+  font-family: inherit;
+}
+
+.btn-retour:hover {
+  background: #8B0920;
+  transform: translateX(-3px);
+  box-shadow: 0 6px 16px rgba(109, 7, 26, 0.4);
+}
+
+.btn-retour svg { width: 18px; height: 18px; }
+
+body.page-bordeaux .btn-retour {
+  background: var(--blanc);
+  color: var(--rouge-bordeaux);
+}
+
+body.page-bordeaux .btn-retour:hover { background: var(--gris-clair); }
+
+@media (max-width: 768px) {
+  .btn-retour {
+    top: 80px;
+    left: 15px;
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+  .btn-retour svg { width: 16px; height: 16px; }
+}
+
+/* FIX events: icône profil ne doit jamais shrink */
+.header-profil,
+.btn-profil,
+.profil-dropdown,
+.dropdown-profil {
+  flex: 0 0 auto;
+}

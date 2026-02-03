@@ -1,0 +1,479 @@
+/* ========================================
+   PAGE QUI SOMMES-NOUS (VERSION FINALE)
+======================================== */
+
+/* HERO QUI SOMMES-NOUS */
+.hero-qui-sommes-nous {
+  position: relative;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-qui-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-qui-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-qui-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: none; /* Pas de dégradé - photo visible */
+}
+
+.hero-qui-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: #fff;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero-qui-content h1 {
+  font-size: 56px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.9);
+}
+
+.hero-qui-content p {
+  font-size: 20px;
+  font-weight: 400;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9);
+}
+
+/* SECTION DEVISE IDEAL */
+.section-devise-ideal {
+  padding: 60px 20px;
+  background: #6D071A;
+  color: #fff;
+  text-align: center;
+}
+
+.devise-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.devise-icone {
+  font-size: 60px;
+  margin-bottom: 20px;
+  color: #FFD700;
+}
+
+.devise-titre {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.devise-contenu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.devise-item {
+  font-size: 42px;
+  font-weight: 700;
+  color: #FFD700;
+  padding: 0 20px;
+}
+
+.devise-separator {
+  font-size: 32px;
+  color: #FFD700;
+  padding: 0 15px;
+}
+
+.devise-description {
+  font-size: 18px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* SECTION PRÉSENTATION */
+.section-presentation {
+  padding: 80px 20px;
+  background: #F9F9F9;
+}
+
+.section-presentation .section-title {
+  font-size: 42px;
+  font-weight: 700;
+  color: #6D071A;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.presentation-texte {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.presentation-texte p {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+.presentation-texte strong {
+  color: #6D071A;
+  font-weight: 600;
+}
+
+/* VIGNETTES CLIQUABLES AVEC HOVER + CTA */
+.section-vignettes-qui {
+  padding: 80px 20px;
+  background: #fff;
+}
+
+.vignettes-grid-qui {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.vignette-qui-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  text-decoration: none;
+  display: block;
+  color: inherit;
+}
+
+.vignette-qui-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(109, 7, 26, 0.25);
+}
+
+.vignette-qui-image {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+}
+
+.vignette-qui-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.vignette-qui-card:hover .vignette-qui-image img {
+  transform: scale(1.1);
+}
+
+/* OVERLAY DÉGRADÉ + CTA */
+.vignette-qui-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(109, 7, 26, 0.9) 0%, rgba(109, 7, 26, 0.7) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vignette-qui-card:hover .vignette-qui-overlay {
+  opacity: 1;
+}
+
+.vignette-qui-cta {
+  text-align: center;
+  color: #fff;
+}
+
+.vignette-qui-cta .cta-text {
+  display: block;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.vignette-qui-cta i {
+  font-size: 32px;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
+}
+
+.vignette-qui-content {
+  padding: 30px;
+  background: #fff;
+}
+
+.vignette-qui-content h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #6D071A;
+  margin-bottom: 10px;
+}
+
+.vignette-qui-content p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+}
+
+.vignette-devise {
+  font-style: italic;
+  font-weight: 600;
+  color: #6D071A !important;
+}
+
+/* SECTIONS DESCRIPTIVES */
+.section-descriptive {
+  padding: 80px 20px;
+  scroll-margin-top: 100px;
+}
+
+.section-descriptive:nth-of-type(odd) {
+  background: #F9F9F9;
+}
+
+.section-descriptive:nth-of-type(even) {
+  background: #fff;
+}
+
+.descriptive-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.section-descriptive .section-title {
+  font-size: 42px;
+  font-weight: 700;
+  color: #6D071A;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.devise-principale {
+  font-size: 24px;
+  font-weight: 600;
+  font-style: italic;
+  color: #6D071A;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.descriptive-texte p {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+.descriptive-texte strong {
+  color: #6D071A;
+  font-weight: 600;
+}
+
+.valeurs-liste {
+  list-style: none;
+  padding: 0;
+}
+
+.valeurs-liste li {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 20px;
+  padding-left: 35px;
+  position: relative;
+}
+
+.valeurs-liste li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #6D071A;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* CTA REJOINDRE */
+.section-cta-rejoindre {
+  padding: 80px 20px;
+  background: #6D071A;
+  color: #fff;
+  text-align: center;
+}
+
+.section-cta-rejoindre h2 {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.section-cta-rejoindre p {
+  font-size: 18px;
+  margin: 0 auto 30px;
+  max-width: 700px;
+}
+
+.section-cta-rejoindre .btn-primary {
+  background: #FFD700;
+  color: #333;
+  padding: 16px 40px;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.section-cta-rejoindre .btn-primary:hover {
+  background: #FFD54F;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(255, 193, 7, 0.4);
+}
+
+/* CONTAINER */
+.section-devise-ideal .container,
+.section-presentation .container,
+.section-vignettes-qui .container,
+.section-descriptive .container,
+.section-cta-rejoindre .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* BOUTON RETOUR */
+.btn-back-white {
+  position: fixed;
+  top: 100px;
+  left: 20px;
+  z-index: 999;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: #fff;
+  color: #6D071A;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.btn-back-white:hover {
+  background: #6D071A;
+  color: #fff;
+  transform: translateX(-3px);
+}
+
+.btn-back-white svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .hero-qui-content h1 {
+    font-size: 46px;
+  }
+
+  .vignettes-grid-qui {
+    grid-template-columns: 1fr;
+  }
+
+  .devise-item {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-qui-sommes-nous {
+    min-height: 400px;
+  }
+
+  .hero-qui-content h1 {
+    font-size: 36px;
+  }
+
+  .hero-qui-content p {
+    font-size: 16px;
+  }
+
+  .devise-item {
+    font-size: 28px;
+    padding: 0 10px;
+  }
+
+  .devise-contenu {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .devise-separator {
+    display: none;
+  }
+
+  .section-presentation .section-title,
+  .section-descriptive .section-title {
+    font-size: 32px;
+  }
+
+  .vignette-qui-cta .cta-text {
+    font-size: 20px;
+  }
+
+  .section-cta-rejoindre h2 {
+    font-size: 32px;
+  }
+
+  .btn-back-white {
+    top: 80px;
+    left: 15px;
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+}

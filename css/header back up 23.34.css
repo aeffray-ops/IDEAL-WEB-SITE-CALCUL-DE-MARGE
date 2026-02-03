@@ -1,0 +1,575 @@
+/* ========================================
+   HEADER PRINCIPAL - TOUTE LARGEUR
+   Police : Poppins (héritée de style.css)
+======================================== */
+
+:root {
+  --rouge-bordeaux: #6D071A;
+  --or: #FFB800;
+  --blanc: #FFFFFF;
+  --gris-clair: #F5F5F5;
+  --gris-moyen: #E5E5E5;
+  --texte-sombre: #2D0202;
+}
+
+.header-principal {
+  position: sticky;
+  top: 0;
+  z-index: 1000 !important;
+  background: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: visible !important;
+  border-bottom: 1px solid var(--gris-moyen);
+}
+
+.header-container-full,
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  height: 80px;
+  max-width: 100%;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  overflow: visible !important;
+  gap: 30px;
+}
+
+.header-container { max-width: 1400px; margin: 0 auto; }
+
+/* LOGO */
+.header-logo { flex-shrink: 0; }
+
+.logo-img {
+  height: 55px;
+  width: auto;
+  transition: transform 0.3s ease;
+}
+
+.logo-img:hover { transform: scale(1.05); }
+
+/* NAVIGATION FULL WIDTH */
+.header-nav-full,
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-link {
+  color: var(--texte-sombre);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 8px 5px;
+  position: relative;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.nav-link:hover { color: var(--rouge-bordeaux); }
+
+.nav-link.active { font-weight: 700; color: var(--rouge-bordeaux); }
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--rouge-bordeaux);
+  border-radius: 2px;
+}
+
+/* FLÈCHE MENU DÉROULANT */
+.nav-arrow {
+  font-size: 10px;
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.nav-item-dropdown:hover .nav-arrow { transform: rotate(180deg); }
+
+/* MENUS DÉROULANTS */
+.nav-item-dropdown { position: relative; }
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--blanc);
+  min-width: 240px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  padding: 10px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  margin-top: 10px;
+}
+
+.nav-item-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 12px 20px;
+  color: var(--texte-sombre);
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+}
+
+.dropdown-menu a:hover {
+  background: var(--gris-clair);
+  color: var(--rouge-bordeaux);
+  border-left-color: var(--rouge-bordeaux);
+  padding-left: 23px;
+}
+
+/* CTA REJOINDRE */
+.header-cta { flex-shrink: 0; }
+
+.btn-rejoindre {
+  background: var(--rouge-bordeaux);
+  color: var(--blanc);
+  padding: 12px 28px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(109, 7, 26, 0.25);
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.btn-rejoindre:hover {
+  background: #8B0920;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(109, 7, 26, 0.35);
+}
+
+/* ========================================
+   HEADER ACTIONS (BOUTON + PROFIL)
+======================================== */
+.header-actions {
+  display: flex !important;
+  align-items: center;
+  gap: 15px;
+  margin-left: auto;
+  flex-shrink: 0 !important;
+  position: relative;
+  z-index: 100;
+}
+
+/* ========================================
+   PROFIL DROPDOWN - CORRECTION COMPLÈTE
+======================================== */
+.header-profil {
+  position: relative;
+  margin-left: 15px;
+  flex-shrink: 0 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.btn-profil {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  min-height: 42px;
+  border-radius: 50%;
+  border: 2px solid #6D071A;
+  background: #FFFFFF !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  padding: 0;
+  position: relative;
+  z-index: 10;
+}
+
+.btn-profil:hover {
+  background: #6D071A !important;
+  border-color: #6D071A;
+  transform: scale(1.05);
+}
+
+.btn-profil svg,
+.btn-profil i {
+  font-size: 18px;
+  color: #6D071A;
+  transition: color 0.3s ease;
+}
+
+.btn-profil:hover svg,
+.btn-profil:hover i {
+  color: #FFFFFF;
+}
+
+.btn-profil svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* MENU DÉROULANT PROFIL - Clic (remplace hover) */
+.dropdown-profil,
+.profil-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0 !important;
+  left: auto !important;
+  min-width: 220px;
+  max-width: 280px;
+  background: #FFFFFF;
+  border: 1px solid rgba(109, 7, 26, 0.15);
+  border-radius: 12px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.12);
+  display: none;
+  z-index: 20000 !important;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.dropdown-profil.is-open,
+.profil-dropdown.is-open {
+  display: block;
+}
+
+/* Triangle */
+.profil-dropdown::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  right: 14px;
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  border-left: 1px solid rgba(109, 7, 26, 0.15);
+  border-top: 1px solid rgba(109, 7, 26, 0.15);
+  transform: rotate(45deg);
+}
+
+.dropdown-profil a,
+.profil-dropdown a,
+.profil-dropdown-item {
+  display: block;
+  padding: 12px 14px;
+  color: #111;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid #F0F0F0;
+  white-space: nowrap;
+}
+
+.dropdown-profil a:last-child,
+.profil-dropdown a:last-child {
+  border-bottom: none;
+}
+
+.dropdown-profil a:hover,
+.profil-dropdown a:hover,
+.profil-dropdown-item:hover {
+  background: rgba(109, 7, 26, 0.08);
+  color: #6D071A;
+}
+
+/* BURGER : voir bloc "BURGER OFFICIEL" en bas du fichier (#menuToggle) */
+
+/* ========================================
+   BOUTON RETOUR
+======================================== */
+
+.btn-retour {
+  position: fixed;
+  top: 100px;
+  left: 20px;
+  background: var(--rouge-bordeaux);
+  color: var(--blanc);
+  border: none;
+  border-radius: 25px;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(109, 7, 26, 0.3);
+  transition: all 0.3s ease;
+  z-index: 999;
+  font-family: inherit;
+}
+
+.btn-retour:hover {
+  background: #8B0920;
+  transform: translateX(-3px);
+  box-shadow: 0 6px 16px rgba(109, 7, 26, 0.4);
+}
+
+.btn-retour svg { width: 18px; height: 18px; }
+
+body.page-bordeaux .btn-retour {
+  background: var(--blanc);
+  color: var(--rouge-bordeaux);
+}
+
+body.page-bordeaux .btn-retour:hover {
+  background: var(--gris-clair);
+}
+
+@media (max-width: 768px) {
+  .btn-retour {
+    top: 80px;
+    left: 15px;
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+  .btn-retour svg { width: 16px; height: 16px; }
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 1200px) {
+  .header-nav-full, .header-nav { gap: 25px; }
+  .nav-link { font-size: 14px; }
+}
+
+/* =========================
+   MOBILE/TABLETTE (< 992px)
+   ========================= */
+@media (max-width: 992px) {
+  #mainNav,
+  .header-nav-full,
+  .header-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: var(--blanc);
+    flex-direction: column;
+    gap: 0;
+    padding: 16px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    border-top: 1px solid rgba(109, 7, 26, 0.15);
+    z-index: 20000;
+  }
+
+  #mainNav.is-open,
+  .header-nav-full.is-open,
+  .header-nav.is-open {
+    display: flex;
+  }
+
+  .nav-link,
+  .nav-item-dropdown > .nav-link {
+    width: 100%;
+    text-align: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--gris-clair);
+  }
+
+  .nav-link.active::after { display: none; }
+
+  .dropdown-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    background: var(--gris-clair);
+    display: none;
+  }
+
+  .nav-item-dropdown.active .dropdown-menu { display: block; }
+
+  .header-actions .btn-rejoindre { display: none; }
+}
+
+@media (max-width: 992px) {
+  .header-container-full {
+    padding: 0 20px;
+  }
+  
+  .header-actions {
+    gap: 12px;
+  }
+  
+  .header-profil {
+    margin-left: 12px;
+    display: block !important;
+  }
+  
+  .dropdown-profil {
+    right: 0 !important;
+    left: auto !important;
+    min-width: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-container-full,
+  .header-container {
+    padding: 0 15px;
+    height: 70px;
+  }
+  .logo-img { height: 45px; }
+  
+  .header-actions {
+    gap: 10px;
+    display: flex !important;
+    visibility: visible !important;
+  }
+  
+  .header-profil {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative;
+    margin-left: 10px;
+    order: 5;
+  }
+  
+  .btn-profil {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    min-height: 38px;
+  }
+  
+  .btn-profil svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .dropdown-profil {
+    position: fixed !important;
+    top: 70px !important;
+    right: 10px !important;
+    left: auto !important;
+    width: calc(100vw - 20px);
+    max-width: 280px;
+    z-index: 999999 !important;
+  }
+  
+  .menu-toggle,
+  .burger-menu,
+  .burger {
+    margin-left: 15px;
+    order: 10;
+  }
+}
+
+/* =========================================================
+   STACKING (Option 1) : burger AU-DESSUS du bandeau
+   Bandeau: 30000
+   Burger:  35000 (toujours visible)
+   ========================================================= */
+
+#bandeau-evenement,
+.bandeau-evenement,
+.bandeau-evenements {
+  z-index: 30000;
+}
+
+/* Header reste propre, mais sous le burger */
+.header-principal {
+  position: sticky;
+  top: 0;
+  z-index: 25000 !important;
+  background: #fff;
+}
+
+/* =========================================================
+   BURGER OFFICIEL (unique) — basé sur #menuToggle
+   ========================================================= */
+
+/* Desktop : burger caché */
+#menuToggle { display: none; }
+
+@media (max-width: 992px) {
+
+  /* Burger visible */
+  #menuToggle {
+    display: inline-flex !important;
+    flex-direction: column;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 46px !important;
+    height: 46px !important;
+    padding: 10px !important;
+
+    background: #fff !important;
+    border: 1px solid rgba(109, 7, 26, 0.25) !important;
+    border-radius: 12px !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    position: relative !important;
+    z-index: 35000 !important; /* AU-DESSUS DU BANDEAU */
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* 3 barres visibles */
+  #menuToggle span {
+    display: block !important;
+    width: 100% !important;
+    max-width: 24px !important;
+    height: 3px !important;
+    margin: 4px 0 !important;
+
+    background: #6D071A !important;
+    border-radius: 999px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* Menu mobile */
+  #mainNav.header-nav-full {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: #fff;
+    padding: 16px;
+    border-top: 1px solid rgba(109, 7, 26, 0.15);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    z-index: 26000; /* sous le bandeau */
+  }
+
+  #mainNav.header-nav-full.is-open {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+}

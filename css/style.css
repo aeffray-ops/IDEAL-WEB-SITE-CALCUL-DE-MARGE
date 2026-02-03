@@ -1,0 +1,2686 @@
+/* ========================================
+   STYLES GLOBAUX IDEAL
+======================================== */
+
+/* ========================================
+   POLICE GLOBALE - POPPINS SUR TOUT LE SITE
+======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+html, body {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+p, span, a, li, div, section, article, header, footer, nav {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+button, input, select, textarea, label {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.header-principal, .footer-principal,
+.hero-content, .hero-qui-content, .hero-nos-biens-content, .hero-evenements-content,
+.section-title, .section-intro, .vignette-qui-content, .presentation-texte, .descriptive-texte,
+.realisation-titre, .realisation-description, .bien-card, .evenement-card,
+.devise-item, .devise-description, .btn-primary, .btn-secondary,
+.hero-realisations h1, .hero-realisations p, .detail-titre,
+.avant-apres-titre, .avant-apres-description {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+/* ========================================
+   CORRECTION GLOBALE HEADER PROFIL
+======================================== */
+
+/* Forcer l'affichage du profil partout */
+.header-profil {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.header-actions {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Empêcher tout overflow qui cache le profil ou le bandeau */
+header,
+.header-principal,
+.header-container-full,
+.header-container,
+.header-actions,
+.header-profil {
+  overflow: visible !important;
+}
+
+/* ========================================
+   CTA FLOATING "RÉSEAU / Devenir membre / Agent Marchand"
+   Visible sur toutes les pages sauf événements
+======================================== */
+.floating-cta {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 70;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid rgba(109, 7, 26, 0.18);
+  min-width: 180px;
+  text-decoration: none;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.floating-cta:hover {
+  transform: translateY(-2px);
+  background: rgba(109, 7, 26, 0.05);
+}
+.floating-cta .t1 {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6D071A;
+}
+.floating-cta .t2 {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 900;
+  color: #111827;
+  font-size: 14px;
+  line-height: 1.1;
+}
+.floating-cta .t3 {
+  color: #6b7280;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Pages webinaire : masquer le floating CTA */
+body.page-webinaire .floating-cta {
+  display: none !important;
+}
+
+@media (max-width: 980px) {
+  .floating-cta {
+    right: 12px;
+    bottom: 12px;
+    min-width: 160px;
+  }
+}
+
+/* ========================================
+   CONTAINERS RÉDUITS ET ALIGNÉS
+======================================== */
+.container-reduced {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ========================================
+   HERO SECTIONS RÉDUITS ET COMPACTS
+======================================== */
+.hero-evenements,
+.hero-qui,
+.hero-realisations,
+.hero-services,
+.hero-reseau {
+  background: #6D071A;
+  color: #FFFFFF;
+  padding: 40px 20px 35px;
+  text-align: center;
+}
+
+.hero-evenements .container-reduced,
+.hero-qui .container-reduced,
+.hero-realisations .container-reduced,
+.hero-services .container-reduced,
+.hero-reseau .container-reduced,
+.hero-evenements .container,
+.hero-qui .container,
+.hero-realisations .container,
+.hero-services .container,
+.hero-reseau .container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.hero-evenements h1,
+.hero-qui h1,
+.hero-realisations h1,
+.hero-services h1,
+.hero-reseau h1 {
+  font-size: 42px;
+  margin-bottom: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.hero-evenements p,
+.hero-qui .hero-subtitle,
+.hero-realisations p,
+.hero-services p,
+.hero-reseau p {
+  font-size: 18px;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* ========================================
+   GRIDS ALIGNÉES
+======================================== */
+.evenements-grid,
+.realisations-grid,
+.services-grid,
+.reseau-grid,
+.section-equipes {
+  padding: 60px 20px;
+}
+
+.evenements-grid .container-reduced,
+.realisations-grid .container-reduced,
+.services-grid .container-reduced,
+.reseau-grid .container-reduced,
+.section-equipes .container-reduced {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.evenements-grid .container,
+.realisations-grid .container,
+.realisations-container,
+.services-grid .container,
+.reseau-grid .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .hero-evenements,
+  .hero-qui,
+  .hero-realisations,
+  .hero-services,
+  .hero-reseau {
+    padding: 30px 15px 25px;
+  }
+
+  .hero-evenements h1,
+  .hero-qui h1,
+  .hero-realisations h1,
+  .hero-services h1,
+  .hero-reseau h1 {
+    font-size: 28px;
+  }
+
+  .hero-evenements p,
+  .hero-qui .hero-subtitle,
+  .hero-realisations p,
+  .hero-services p,
+  .hero-reseau p {
+    font-size: 16px;
+  }
+}
+
+/* ==========================================
+   SECTION VENDEURS AVEC BACKGROUND IMAGE
+========================================== */
+.section-vendeurs {
+  position: relative;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 80px 20px;
+}
+
+.vendeurs-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.vendeurs-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.vendeurs-content {
+  position: relative;
+  z-index: 10;
+  max-width: 800px;
+  text-align: left;
+  color: #FFFFFF;
+}
+
+.section-vendeurs .badge-section {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #6D071A;
+  color: #6D071A;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 8px rgba(109, 7, 26, 0.3);
+}
+
+.section-vendeurs h2 {
+  font-size: 42px;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.3;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.section-vendeurs p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #FFFFFF;
+  margin-bottom: 30px;
+  opacity: 0.98;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 0 16px rgba(0, 0, 0, 0.5);
+}
+
+.section-vendeurs .btn-primary {
+  background: #6D071A;
+  color: #FFFFFF;
+  padding: 15px 35px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(109, 7, 26, 0.3);
+}
+
+.section-vendeurs .btn-primary:hover {
+  background: #4A0404;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(109, 7, 26, 0.5);
+}
+
+@media (max-width: 1024px) {
+  .section-vendeurs {
+    min-height: 450px;
+    padding: 60px 20px;
+  }
+  .section-vendeurs h2 {
+    font-size: 36px;
+  }
+  .section-vendeurs p {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-vendeurs {
+    min-height: 400px;
+    padding: 50px 15px;
+  }
+  .vendeurs-content {
+    text-align: center;
+  }
+  .section-vendeurs h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+  }
+  .section-vendeurs p {
+    font-size: 16px;
+    margin-bottom: 25px;
+  }
+  .section-vendeurs .btn-primary {
+    padding: 14px 30px;
+    font-size: 15px;
+  }
+  .vendeurs-bg-image {
+    object-position: 60% center;
+  }
+}
+
+/* ==========================================
+   SECTION ACQUÉREURS AVEC BACKGROUND IMAGE
+========================================== */
+.section-acquereurs {
+  position: relative;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 80px 20px;
+}
+
+.acquereurs-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.acquereurs-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.acquereurs-content {
+  position: relative;
+  z-index: 10;
+  max-width: 800px;
+  text-align: left;
+  color: #FFFFFF;
+}
+
+.section-acquereurs .badge-section {
+  display: inline-block;
+  background: rgba(255, 215, 0, 0.2);
+  border: 2px solid #FFD700;
+  color: #FFD700;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 25px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.section-acquereurs h2 {
+  font-size: 42px;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.3;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.section-acquereurs p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #FFFFFF;
+  margin-bottom: 30px;
+  opacity: 0.98;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 0 16px rgba(0, 0, 0, 0.5);
+}
+
+.section-acquereurs .btn-primary {
+  background: #FFD700;
+  color: #6D071A;
+  padding: 15px 35px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+.section-acquereurs .btn-primary:hover {
+  background: #FFFFFF;
+  color: #6D071A;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
+}
+
+@media (max-width: 1024px) {
+  .section-acquereurs {
+    min-height: 450px;
+    padding: 60px 20px;
+  }
+  .section-acquereurs h2 {
+    font-size: 36px;
+  }
+  .section-acquereurs p {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-acquereurs {
+    min-height: 400px;
+    padding: 50px 15px;
+  }
+  .acquereurs-content {
+    text-align: center;
+  }
+  .section-acquereurs h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+  }
+  .section-acquereurs p {
+    font-size: 16px;
+    margin-bottom: 25px;
+  }
+  .section-acquereurs .btn-primary {
+    padding: 14px 30px;
+    font-size: 15px;
+  }
+  .acquereurs-bg-image {
+    object-position: center 40%;
+  }
+}
+
+/* ========================================
+   BOUTON RETOUR BLANC
+======================================== */
+.btn-back-white {
+  position: fixed;
+  top: 100px;
+  left: 30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #FFFFFF;
+  color: #6D071A;
+  padding: 12px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+  z-index: 999;
+  border: 2px solid #6D071A;
+}
+
+.btn-back-white:hover {
+  background: #6D071A;
+  color: #FFFFFF;
+  transform: translateX(-5px);
+  box-shadow: 0 6px 20px rgba(109, 7, 26, 0.3);
+}
+
+.btn-back-white svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+}
+
+@media (max-width: 768px) {
+  .btn-back-white {
+    top: 80px;
+    left: 15px;
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+}
+
+/* ========================================
+   SECTION 1 : DEUX GRANDES VIGNETTES (hero avec photo fond)
+======================================== */
+.section-double-principales {
+  position: relative;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  padding: 80px 20px;
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-double-principales .container.hero-content {
+  max-width: 1200px;
+}
+
+.grid-deux-vignettes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+}
+
+.vignette-principale {
+  padding: 40px 35px;
+  border-radius: 16px;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.vignette-principale:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+}
+
+.vignette-blanc {
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid rgba(255,255,255,0.8);
+}
+
+.vignette-blanc:hover {
+  background: rgba(255, 255, 255, 0.98);
+}
+
+.vignette-bordeaux {
+  background: rgba(109, 7, 26, 0.95);
+  color: #FFFFFF;
+  border: 2px solid rgba(255,255,255,0.2);
+}
+
+.vignette-bordeaux:hover {
+  background: rgba(109, 7, 26, 0.98);
+}
+
+.vignette-label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  width: fit-content;
+}
+
+.vignette-blanc .vignette-label {
+  background: rgba(109, 7, 26, 0.1);
+  color: #6D071A;
+  border: 1px solid rgba(109, 7, 26, 0.3);
+}
+
+.vignette-bordeaux .vignette-label {
+  background: rgba(255, 215, 0, 0.2);
+  color: #FFD700;
+  border: 1px solid rgba(255, 215, 0, 0.4);
+}
+
+.vignette-titre {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.vignette-blanc .vignette-titre {
+  color: #333;
+}
+
+.vignette-bordeaux .vignette-titre {
+  color: #FFFFFF;
+}
+
+.vignette-description {
+  font-size: 17px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.vignette-blanc .vignette-description {
+  color: #555;
+}
+
+.vignette-bordeaux .vignette-description {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.btn-vignette {
+  display: inline-block;
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  width: fit-content;
+  text-align: center;
+}
+
+.vignette-blanc .btn-vignette {
+  background: #6D071A;
+  color: #FFFFFF;
+  border: 2px solid #6D071A;
+}
+
+.vignette-blanc .btn-vignette:hover {
+  background: #FFFFFF;
+  color: #6D071A;
+  border: 2px solid #6D071A;
+}
+
+.vignette-bordeaux .btn-vignette {
+  background: #FFFFFF;
+  color: #6D071A;
+  border: 2px solid #FFFFFF;
+}
+
+.vignette-bordeaux .btn-vignette:hover {
+  background: #FFD700;
+  color: #6D071A;
+  border: 2px solid #FFD700;
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   SECTION 2 : TROIS VIGNETTES (en dessous)
+======================================== */
+.section-trois-vignettes {
+  padding: 60px 20px 80px;
+  background: #FFFFFF;
+}
+
+.section-trois-vignettes .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.grid-trois-vignettes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+/* ========================================
+   SECTION TROIS VIGNETTES (STYLE PHOTO OVERLAY)
+======================================== */
+.vignette-photo {
+  display: block;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+
+.vignette-photo:hover {
+  transform: translateY(-10px);
+}
+
+.vignette-photo-bg {
+  position: relative;
+  height: 320px;
+  border-radius: 16px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #E0E0E0;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  transition: all 0.4s ease;
+}
+
+.vignette-photo:hover .vignette-photo-bg {
+  box-shadow: 0 12px 40px rgba(109, 7, 26, 0.3);
+}
+
+/* Images de fond (assets/ ou fallback Unsplash) */
+.vignette-photo-1 .vignette-photo-bg { background-image: url('assets/bienvenue-ideal.jpg'), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800'); }
+.vignette-photo-2 .vignette-photo-bg { background-image: url('assets/nous-achetons.jpg'), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800'); }
+.vignette-photo-3 .vignette-photo-bg { background-image: url('assets/nos-realisations.jpg'), url('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800'); }
+
+/* Overlay sombre pour lisibilité */
+.vignette-photo .vignette-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  transition: all 0.4s ease;
+}
+
+.vignette-photo:hover .vignette-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(109, 7, 26, 0.85) 100%
+  );
+}
+
+/* Contenu de la vignette */
+.vignette-photo-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30px 25px;
+  z-index: 2;
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vignette-photo-titre {
+  font-size: 24px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+}
+
+.vignette-photo-sous-titre {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 20px 0;
+  line-height: 1.4;
+}
+
+.btn-vignette-photo {
+  display: inline-block;
+  background: #6D071A;
+  color: #FFFFFF;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  width: fit-content;
+  transition: all 0.3s ease;
+  border: 2px solid #6D071A;
+}
+
+.vignette-photo:hover .btn-vignette-photo {
+  background: #FFFFFF;
+  color: #6D071A;
+  border-color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   RESPONSIVE VIGNETTES PAGE D'ACCUEIL
+======================================== */
+@media (max-width: 1024px) {
+  .section-double-principales {
+    min-height: 450px;
+    padding: 60px 20px;
+  }
+
+  .grid-deux-vignettes {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .grid-trois-vignettes {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+  
+  .vignette-photo-bg {
+    height: 280px;
+  }
+
+  .vignette-principale {
+    padding: 50px 40px;
+    min-height: 300px;
+  }
+
+  .vignette-titre {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-double-principales {
+    min-height: auto;
+    padding: 50px 15px;
+  }
+
+  .section-trois-vignettes {
+    padding: 40px 15px 60px;
+  }
+
+  .grid-trois-vignettes {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .vignette-principale {
+    padding: 40px 30px;
+    min-height: auto;
+  }
+
+  .vignette-titre {
+    font-size: 28px;
+  }
+
+  .vignette-description {
+    font-size: 15px;
+  }
+
+  .vignette-photo-bg {
+    height: 300px;
+  }
+
+  .vignette-photo-titre {
+    font-size: 22px;
+  }
+
+  .vignette-photo-sous-titre {
+    font-size: 14px;
+  }
+}
+
+/* ========================================
+   SECTION FAQ - SIMPLE (SANS PHOTO)
+======================================== */
+.section-faq {
+  padding: 80px 20px;
+  background: #F9F9F9;
+}
+
+.section-faq .container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.section-faq .section-title {
+  font-size: 42px;
+  font-weight: 700;
+  color: #6D071A;
+  text-align: center;
+  margin-bottom: 50px;
+  line-height: 1.3;
+}
+
+.faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.faq-item {
+  background: #FFFFFF;
+  border: 2px solid #E0E0E0;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+  border-color: #6D071A;
+  box-shadow: 0 4px 12px rgba(109, 7, 26, 0.1);
+}
+
+.faq-question {
+  width: 100%;
+  padding: 20px 25px;
+  background: #FFFFFF;
+  border: none;
+  text-align: left;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333333;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.faq-question:hover {
+  color: #6D071A;
+  background: #FFF8F8;
+}
+
+.faq-question .faq-icon {
+  flex-shrink: 0;
+  color: #6D071A;
+  stroke: #6D071A;
+  transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-question .faq-icon {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  padding: 0 25px;
+  background: #FAFAFA;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 800px;
+  padding: 20px 25px;
+  border-top: 1px solid #E0E0E0;
+}
+
+.faq-answer p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #555555;
+  margin: 0 0 10px 0;
+}
+
+.faq-answer p:last-child {
+  margin-bottom: 0;
+}
+
+.faq-answer ul {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #555555;
+  margin: 0 0 10px 0;
+  padding-left: 24px;
+}
+
+.faq-answer li {
+  margin-bottom: 6px;
+}
+
+@media (max-width: 768px) {
+  .section-faq {
+    padding: 60px 15px;
+  }
+  
+  .section-faq .section-title {
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
+  
+  .faq-question {
+    font-size: 16px;
+    padding: 18px 20px;
+  }
+  
+  .faq-answer p,
+  .faq-answer ul {
+    font-size: 15px;
+  }
+}
+
+/* ========================================
+   RESPONSIVE GLOBAL
+======================================== */
+
+/* Tablette (768px - 1024px) */
+@media (max-width: 1024px) {
+  .container-reduced {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+  
+  .evenements-grid .container-reduced,
+  .realisations-grid .container-reduced,
+  .services-grid .container-reduced,
+  .reseau-grid .container-reduced {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+}
+
+/* Mobile (max-width: 767px) */
+@media (max-width: 767px) {
+  .evenements-grid .container-reduced,
+  .realisations-grid .container-reduced,
+  .services-grid .container-reduced,
+  .reseau-grid .container-reduced {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .btn-back-white {
+    top: 70px;
+    left: 10px;
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+  
+  .filtre-box {
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+  }
+  
+  .filtre-select {
+    width: 100%;
+  }
+  
+  .equipe-photos {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+/* Très petit mobile (max-width: 480px) */
+@media (max-width: 480px) {
+  .hero-evenements h1,
+  .hero-qui h1,
+  .hero-realisations h1,
+  .hero-services h1,
+  .hero-reseau h1 {
+    font-size: 24px;
+  }
+  
+  .hero-evenements p,
+  .hero-qui .hero-subtitle,
+  .hero-realisations p,
+  .hero-services p,
+  .hero-reseau p {
+    font-size: 15px;
+  }
+  
+  .btn-bandeau {
+    padding: 8px 20px;
+    font-size: 14px;
+  }
+}
+
+/* ========================================
+   HERO NOS BIENS À VENDRE (AVEC PHOTO)
+======================================== */
+
+.hero-nos-biens {
+  position: relative;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+.hero-nos-biens-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-nos-biens-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-nos-biens-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: none; /* Suppression du dégradé */
+}
+
+.hero-nos-biens-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: #ffffff !important;
+}
+
+.hero-nos-biens-content h1 {
+  font-size: 56px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #ffffff !important;
+  text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.9) !important;
+}
+
+.hero-nos-biens-content p {
+  font-size: 20px;
+  font-weight: 400;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+  color: #ffffff !important;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9) !important;
+}
+
+@media (max-width: 1024px) {
+  .hero-nos-biens {
+    height: 450px;
+  }
+
+  .hero-nos-biens-content h1 {
+    font-size: 46px;
+  }
+
+  .hero-nos-biens-content p {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-nos-biens {
+    height: 400px;
+  }
+
+  .hero-nos-biens-content h1 {
+    font-size: 36px;
+  }
+
+  .hero-nos-biens-content p {
+    font-size: 16px;
+    padding: 0 20px;
+  }
+}
+
+/* ========================================
+   HERO NOS SERVICES
+======================================== */
+.hero-nos-services .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.section-services-grid .container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.hero-nos-services {
+  position: relative;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero-nos-services-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.hero-nos-services-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-nos-services-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: #ffffff !important;
+}
+.hero-nos-services-content h1 {
+  font-size: 56px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #ffffff !important;
+  text-shadow: none !important;
+}
+.hero-nos-services-content p {
+  font-size: 20px;
+  font-weight: 400;
+  max-width: 900px;
+  margin: 0 auto 15px;
+  line-height: 1.6;
+  color: #ffffff !important;
+  text-shadow: none !important;
+}
+.hero-nos-services-content .hero-subtitle {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: none !important;
+}
+
+/* ========================================
+   GRILLE 2x2 DES SERVICES
+======================================== */
+.section-services-grid {
+  padding: 80px 20px;
+  background: #F9F9F9;
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.service-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+.service-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 40px rgba(109, 7, 26, 0.25);
+}
+.service-card-header {
+  position: relative;
+}
+.service-main-image {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+.service-main-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.service-card:hover .service-main-image img {
+  transform: scale(1.1);
+}
+.service-card h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #6D071A;
+  padding: 25px 25px 10px;
+  margin: 0;
+}
+.service-description {
+  font-size: 16px;
+  color: #555;
+  padding: 0 25px 20px;
+  line-height: 1.6;
+}
+.service-sous-services {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  padding: 0 25px 25px;
+}
+.sous-service-item {
+  background: #F9F9F9;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.sous-service-item:hover {
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(109, 7, 26, 0.2);
+  transform: translateY(-5px);
+}
+.sous-service-item img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.sous-service-item:hover img {
+  transform: scale(1.1);
+}
+.sous-service-item h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #6D071A;
+  padding: 15px 15px 5px;
+  margin: 0;
+}
+.sous-service-item p {
+  font-size: 14px;
+  color: #555;
+  padding: 0 15px 15px;
+  margin: 0;
+}
+
+/* MODAL DÉTAIL */
+.modal-detail-service {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-detail-service.active {
+  display: flex;
+}
+.modal-content {
+  background: #fff;
+  border-radius: 16px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: slideIn 0.4s ease;
+}
+@keyframes slideIn {
+  from { transform: translateY(-50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #6D071A;
+  color: #fff;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+.modal-close:hover {
+  background: #8A0921;
+  transform: rotate(90deg);
+}
+.modal-body {
+  display: flex;
+  flex-direction: column;
+}
+.modal-image {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+.modal-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.modal-texte {
+  padding: 40px;
+}
+.modal-texte h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #6D071A;
+  margin-bottom: 20px;
+}
+.modal-texte p {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 25px;
+}
+.modal-texte ul {
+  list-style: none;
+  padding: 0;
+}
+.modal-texte ul li {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 15px;
+  padding-left: 30px;
+  position: relative;
+}
+.modal-texte ul li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #6D071A;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+@media (max-width: 1024px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  .service-sous-services {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-nos-services {
+    height: 400px;
+  }
+  .hero-nos-services-content h1 {
+    font-size: 36px;
+  }
+  .service-card h2 {
+    font-size: 24px;
+  }
+  .modal-texte {
+    padding: 20px;
+  }
+  .modal-texte h2 {
+    font-size: 28px;
+  }
+}
+
+/* ========================================
+   PAGE CONTACT - CENTRAGE ET AMÉLIORATION
+   ======================================== */
+
+/* HERO CONTACT */
+.hero-contact {
+  position: relative;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-contact-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-contact-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(109, 7, 26, 0.5);
+  z-index: 2;
+}
+
+.hero-contact-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-contact-content {
+  position: relative;
+  z-index: 10;
+  text-align: center !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.hero-contact-content h1 {
+  font-size: 56px;
+  font-weight: 700;
+  color: #ffffff !important;
+  text-align: center !important;
+  margin: 0 auto 30px;
+  text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.9);
+}
+
+.hero-contact-content p {
+  font-size: 20px;
+  font-weight: 400;
+  color: #ffffff !important;
+  text-align: center !important;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9);
+}
+
+/* SECTION CONTACT */
+.section-contact {
+  padding: 80px 20px;
+  background: #f8f9fa;
+}
+
+.section-contact .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-contact .section-title {
+  font-size: 42px;
+  font-weight: 700;
+  color: #6D071A;
+  text-align: center !important;
+  margin: 0 auto 50px;
+  display: block;
+}
+
+/* FORMULAIRE ET COORDONNÉES */
+.contact-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.contact-form,
+.contact-info {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* RESPONSIVE CONTACT */
+@media (max-width: 968px) {
+  .hero-contact-content h1 {
+    font-size: 42px;
+  }
+
+  .contact-wrapper {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .section-contact .section-title {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-contact {
+    height: 300px;
+  }
+
+  .hero-contact-content h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+
+  .hero-contact-content p {
+    font-size: 16px;
+  }
+
+  .section-contact {
+    padding: 60px 20px;
+  }
+
+  .section-contact .section-title {
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
+
+  .contact-form,
+  .contact-info {
+    padding: 30px 20px;
+  }
+}
+
+/* ========================================
+   NOTRE HISTOIRE - VERSION MODERNE EN CARTES
+   ======================================== */
+
+.presentation-content-modern {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.histoire-bloc {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 40px 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.histoire-bloc::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: #6D071A;
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+
+.histoire-bloc:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 30px rgba(109, 7, 26, 0.15);
+}
+
+.histoire-bloc:hover::before {
+  transform: scaleY(1);
+}
+
+/* BLOC HIGHLIGHT (Innovation et Ambition) */
+.histoire-bloc-highlight {
+  background: linear-gradient(135deg, #6D071A 0%, #8A0921 100%);
+  color: #ffffff;
+}
+
+.histoire-bloc-highlight h3,
+.histoire-bloc-highlight p {
+  color: #ffffff !important;
+}
+
+.histoire-bloc-highlight strong {
+  color: #FFC107 !important;
+}
+
+.histoire-bloc-highlight .histoire-icone {
+  background: rgba(255, 193, 7, 0.2);
+}
+
+.histoire-bloc-highlight .histoire-icone i {
+  color: #FFC107 !important;
+}
+
+/* ICÔNES */
+.histoire-icone {
+  width: 60px;
+  height: 60px;
+  background: rgba(109, 7, 26, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.histoire-icone i {
+  font-size: 28px;
+  color: #6D071A;
+}
+
+/* TITRES DES BLOCS */
+.histoire-bloc h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #6D071A;
+  margin-bottom: 15px;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* TEXTE */
+.histoire-bloc p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #333;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.histoire-bloc strong {
+  font-weight: 700;
+  color: #6D071A;
+}
+
+/* RESPONSIVE NOTRE HISTOIRE */
+@media (max-width: 968px) {
+  .presentation-content-modern {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .histoire-bloc {
+    padding: 30px 25px;
+  }
+
+  .histoire-bloc h3 {
+    font-size: 20px;
+  }
+
+  .histoire-bloc p {
+    font-size: 15px;
+  }
+
+  .histoire-icone {
+    width: 50px;
+    height: 50px;
+  }
+
+  .histoire-icone i {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .histoire-bloc {
+    padding: 25px 20px;
+  }
+
+  .histoire-bloc h3 {
+    font-size: 18px;
+  }
+}
+
+/* ========================================
+   PAGE VENDEURS - STYLE NOS SERVICES
+   ======================================== */
+
+/* SECTIONS GÉNÉRALES */
+.section-vendeurs-grid {
+  padding: 80px 20px;
+  background: #ffffff;
+}
+
+.section-bg-light {
+  background: #f8f9fa;
+}
+
+.section-vendeurs-grid .section-title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 700;
+  color: #6D071A;
+  margin-bottom: 50px;
+}
+
+/* GRILLE VIGNETTES 2x2 */
+.vendeurs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* GRILLE 2 COLONNES POUR VALORISATION */
+.vendeurs-grid-2cols {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* CARTE VIGNETTE */
+.vendeur-card {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.vendeur-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 30px rgba(109, 7, 26, 0.15);
+}
+
+/* IMAGE DE LA CARTE */
+.vendeur-card-image {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+}
+
+.vendeur-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.vendeur-card:hover .vendeur-card-image img {
+  transform: scale(1.05);
+}
+
+/* CONTENU DE LA CARTE */
+.vendeur-card-content {
+  padding: 30px 25px;
+}
+
+.vendeur-card-content h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #6D071A;
+  margin-bottom: 15px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.vendeur-card-content p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #333;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* CARTE LARGE (pour valorisation) */
+.vendeur-card-large .vendeur-card-image {
+  height: 320px;
+}
+
+/* ========================================
+   PROCESSUS EN 4 ÉTAPES - TIMELINE
+   ======================================== */
+
+.section-vendeurs-processus {
+  padding: 80px 20px;
+  background: #f8f9fa;
+}
+
+.section-vendeurs-processus .section-title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 700;
+  color: #6D071A;
+  margin-bottom: 50px;
+}
+
+.processus-timeline {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.processus-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 25px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.processus-step:hover {
+  transform: translateX(10px);
+  box-shadow: 0 6px 25px rgba(109, 7, 26, 0.12);
+}
+
+.processus-number {
+  width: 60px;
+  height: 60px;
+  background: #6D071A;
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.processus-content h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #6D071A;
+  margin-bottom: 10px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.processus-content p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #333;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ========================================
+   CTA FINAL VENDEURS
+   ======================================== */
+
+.section-vendeurs-cta {
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #6D071A 0%, #8A0921 100%);
+}
+
+.cta-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cta-wrapper h2 {
+  font-size: 42px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.cta-wrapper p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #ffffff;
+  margin-bottom: 40px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.btn-cta-primary {
+  background: #FFC107;
+  color: #000;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 16px 40px;
+  border-radius: 30px;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.btn-cta-primary:hover {
+  background: #FFD54F;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 193, 7, 0.4);
+}
+
+/* ========================================
+   RESPONSIVE PAGE VENDEURS
+   ======================================== */
+
+@media (max-width: 968px) {
+  .vendeurs-grid,
+  .vendeurs-grid-2cols {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .section-vendeurs-grid .section-title,
+  .section-vendeurs-processus .section-title {
+    font-size: 28px;
+    margin-bottom: 35px;
+  }
+
+  .vendeur-card-image {
+    height: 240px;
+  }
+
+  .vendeur-card-content {
+    padding: 25px 20px;
+  }
+
+  .vendeur-card-content h3 {
+    font-size: 20px;
+  }
+
+  .processus-step {
+    padding: 25px 20px;
+  }
+
+  .processus-number {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+
+  .cta-wrapper h2 {
+    font-size: 32px;
+  }
+
+  .cta-wrapper p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-vendeurs-grid,
+  .section-vendeurs-processus,
+  .section-vendeurs-cta {
+    padding: 60px 20px;
+  }
+
+  .section-vendeurs-grid .section-title,
+  .section-vendeurs-processus .section-title {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+
+  .vendeur-card-image {
+    height: 200px;
+  }
+
+  .vendeur-card-large .vendeur-card-image {
+    height: 260px;
+  }
+
+  .processus-step {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .cta-wrapper h2 {
+    font-size: 28px;
+  }
+}
+
+/* ========================================
+   PAGE VENDEURS - HERO + 4 VIGNETTES 4 ZONES
+   ======================================== */
+
+/* HERO VENDEURS - STYLE ACQUÉREURS (SANS ENCADRÉ) */
+.hero-vendeurs {
+  position: relative;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.hero-vendeurs-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-vendeurs-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Overlay supprimé - fond semi-transparent sur le contenu uniquement */
+
+/* CONTENU HERO - SANS ENCADRÉ GRIS */
+.hero-vendeurs-content {
+  position: relative;
+  z-index: 10;
+  text-align: left;
+  max-width: 1200px;
+  padding: 0 40px;
+}
+
+/* BADGE VENDEURS - ROUGE BORDEAUX TRANSPARENT */
+.hero-badge-vendeurs {
+  display: inline-block;
+  background: rgba(109, 7, 26, 0.85);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 12px 30px;
+  border-radius: 30px;
+  margin-bottom: 30px;
+  font-family: 'Poppins', sans-serif;
+  backdrop-filter: blur(5px);
+}
+
+/* TITRE - ALIGNÉ À GAUCHE */
+.hero-vendeurs-content h1 {
+  font-size: 48px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+  font-family: 'Poppins', sans-serif;
+  text-align: left;
+  max-width: 800px;
+}
+
+/* TEXTE - ALIGNÉ À GAUCHE */
+.hero-vendeurs-content p {
+  font-size: 20px;
+  color: #ffffff;
+  margin-bottom: 40px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+  font-family: 'Poppins', sans-serif;
+  text-align: left;
+  max-width: 700px;
+}
+
+/* CTA JAUNE (style bouton Acquéreurs) */
+.btn-hero-vendeurs {
+  display: inline-block;
+  background: #FFC107;
+  color: #000;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 16px 40px;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.btn-hero-vendeurs:hover {
+  background: #FFD54F;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 193, 7, 0.4);
+}
+
+/* SECTION VIGNETTES - ANCRE */
+#section-vignettes {
+  scroll-margin-top: 100px;
+}
+
+.section-vendeurs-vignettes {
+  padding: 80px 20px;
+  background: #f8f9fa;
+}
+
+.section-vendeurs-vignettes .section-title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 700;
+  color: #6D071A;
+  margin-bottom: 50px;
+}
+
+/* ========================================
+   CORRECTION ALIGNEMENT BOUTON "VOIR LES DÉTAILS"
+   ======================================== */
+
+/* GRILLE PRINCIPALE - ALIGNEMENT VERTICAL */
+.vendeurs-grid-principale,
+.acquereurs-grid-principale {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+/* Vignette en flexbox pour pousser le bouton en bas */
+.vignette-vendeur-principale,
+.vignette-acquereur-principale {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.vignette-vendeur-principale:hover,
+.vignette-acquereur-principale:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 30px rgba(109, 7, 26, 0.2);
+}
+
+/* Header de hauteur FIXE pour uniformité */
+.vignette-vendeur-principale .vignette-header,
+.vignette-acquereur-principale .vignette-header {
+  background: #ffffff;
+  padding: 30px 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Animation hover */
+.vignette-vendeur-principale:hover .vignette-header,
+.vignette-acquereur-principale:hover .vignette-header {
+  background: #6D071A;
+}
+
+/* UNIFORMISER LA HAUTEUR DES TITRES */
+.vignette-header h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #6D071A;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.vignette-vendeur-principale:hover .vignette-header h3,
+.vignette-acquereur-principale:hover .vignette-header h3 {
+  color: #ffffff;
+}
+
+/* Mini-grid prend l'espace restant */
+.vignette-vendeur-principale .vignette-mini-grid,
+.vignette-acquereur-principale .vignette-mini-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  flex: 1;
+}
+
+/* Compatibilité avec vignette-mini-grid seul */
+.vignette-mini-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+}
+
+/* MINI ZONE */
+.mini-zone {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.mini-zone:hover {
+  background: rgba(109, 7, 26, 0.05);
+}
+
+/* IMAGE MINI ZONE */
+.mini-zone-img {
+  width: 100%;
+  height: 70%;
+  overflow: hidden;
+}
+
+.mini-zone-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.mini-zone:hover .mini-zone-img img {
+  transform: scale(1.1);
+}
+
+/* TITRE MINI ZONE */
+.mini-zone-titre {
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6D071A;
+  text-align: center;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  height: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Bouton TOUJOURS en bas de la vignette */
+.vignette-vendeur-principale .btn-voir-details,
+.vignette-acquereur-principale .btn-voir-details,
+.btn-voir-details {
+  width: 100%;
+  padding: 18px;
+  background: #6D071A;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+.vignette-vendeur-principale .btn-voir-details:hover,
+.vignette-acquereur-principale .btn-voir-details:hover,
+.btn-voir-details:hover {
+  background: #8A0921;
+}
+
+/* ========================================
+   MODAL DÉTAILS VENDEURS
+   ======================================== */
+
+.modal-vendeur-details {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  overflow-y: auto;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.modal-vendeur-details.active {
+  display: flex;
+}
+
+.modal-vendeur-content {
+  background: #ffffff;
+  border-radius: 16px;
+  max-width: 1000px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  margin: 20px;
+}
+
+.modal-vendeur-details .modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #6D071A;
+  color: #ffffff;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.modal-vendeur-details .modal-close:hover {
+  background: #8A0921;
+  transform: rotate(90deg);
+}
+
+.modal-vendeur-body {
+  padding: 60px 40px 40px;
+}
+
+.modal-vendeur-body h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #6D071A;
+  margin-bottom: 30px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.modal-detail-item {
+  margin-bottom: 40px;
+  padding: 30px;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.modal-detail-item h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #6D071A;
+  margin-bottom: 15px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.modal-detail-item p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #333;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ========================================
+   PAGE ACQUÉREURS - STYLE VENDEURS (4 VIGNETTES)
+   ======================================== */
+
+.section-acquereurs-vignettes {
+  padding: 80px 20px;
+  background: #f8f9fa;
+}
+
+.section-acquereurs-vignettes .section-title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 700;
+  color: #6D071A;
+  margin-bottom: 50px;
+}
+
+/* MODAL DÉTAILS ACQUÉREURS */
+.modal-acquereur-details {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  overflow-y: auto;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.modal-acquereur-details.active {
+  display: flex;
+}
+
+.modal-acquereur-content {
+  background: #ffffff;
+  border-radius: 16px;
+  max-width: 1000px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  margin: 20px;
+}
+
+.modal-acquereur-details .modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #6D071A;
+  color: #ffffff;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.modal-acquereur-details .modal-close:hover {
+  background: #8A0921;
+  transform: rotate(90deg);
+}
+
+.modal-acquereur-body {
+  padding: 60px 40px 40px;
+}
+
+.modal-acquereur-body h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #6D071A;
+  margin-bottom: 30px;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* CTA FINAL ACQUÉREURS */
+.section-acquereurs-cta {
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #6D071A 0%, #8A0921 100%);
+}
+
+/* RESPONSIVE VIGNETTES VENDEURS ET ACQUÉREURS */
+@media (max-width: 968px) {
+  .vendeurs-grid-principale,
+  .acquereurs-grid-principale {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .vignette-header {
+    min-height: 90px;
+  }
+
+  .hero-vendeurs {
+    height: 500px;
+    justify-content: center;
+  }
+
+  .hero-vendeurs-content {
+    padding: 0 30px;
+    text-align: center;
+  }
+
+  .hero-vendeurs-content h1 {
+    font-size: 36px;
+    text-align: center;
+    margin: 0 auto 20px;
+  }
+
+  .hero-vendeurs-content p {
+    font-size: 18px;
+    text-align: center;
+    margin: 0 auto 40px;
+  }
+
+  .hero-badge-vendeurs {
+    font-size: 14px;
+    padding: 10px 25px;
+  }
+
+  .vignette-header h3 {
+    font-size: 20px;
+  }
+
+  .mini-zone-titre {
+    font-size: 12px;
+  }
+
+  .section-vendeurs-vignettes .section-title {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-vendeurs {
+    height: 450px;
+  }
+
+  .hero-vendeurs-content {
+    padding: 0 20px;
+  }
+
+  .hero-vendeurs-content h1 {
+    font-size: 28px;
+    margin: 0 auto 15px;
+  }
+
+  .hero-vendeurs-content p {
+    font-size: 16px;
+    margin: 0 auto 30px;
+  }
+
+  .btn-hero-vendeurs {
+    font-size: 16px;
+    padding: 14px 32px;
+  }
+
+  .section-vendeurs-vignettes {
+    padding: 60px 20px;
+  }
+
+  .section-vendeurs-vignettes .section-title {
+    font-size: 24px;
+    margin-bottom: 35px;
+  }
+
+  .vignette-header {
+    min-height: 80px;
+    padding: 25px 20px;
+  }
+
+  .vignette-header h3 {
+    font-size: 18px;
+  }
+
+  .vignette-mini-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-vendeur-body,
+  .modal-acquereur-body {
+    padding: 40px 20px 20px;
+  }
+
+  .modal-vendeur-body h2,
+  .modal-acquereur-body h2 {
+    font-size: 26px;
+  }
+
+  .section-acquereurs-vignettes {
+    padding: 60px 20px;
+  }
+
+  .section-acquereurs-vignettes .section-title {
+    font-size: 24px;
+    margin-bottom: 35px;
+  }
+}

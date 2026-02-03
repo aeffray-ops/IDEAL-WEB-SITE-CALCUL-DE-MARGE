@@ -1,0 +1,235 @@
+/* ========================================
+   BANDEAU NOS ÉVÉNEMENTS
+======================================== */
+.bandeau-evenement,
+.bandeau-evenements,
+#bandeau-evenement {
+  background: linear-gradient(90deg, #6D071A 0%, #8A0921 50%, #6D071A 100%);
+  padding: 12px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.bandeau-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bandeau-left {
+  flex: 1;
+}
+
+/* CENTRE : Texte "Nos événements" avec animation */
+.bandeau-center {
+  flex: 0 0 auto;
+}
+
+.bandeau-link {
+  text-decoration: none;
+  display: inline-block;
+}
+
+.bandeau-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: #FFC107;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  animation: surbrillance 2s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes surbrillance {
+  0%, 100% {
+    opacity: 1;
+    text-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
+  }
+  50% {
+    opacity: 0.7;
+    text-shadow: 0 0 20px rgba(255, 193, 7, 1), 0 0 30px rgba(255, 193, 7, 0.8);
+  }
+}
+
+.bandeau-link:hover .bandeau-text {
+  color: #FFD54F;
+}
+
+/* Fallback pour ancienne structure */
+.bandeau-title {
+  color: #FFC107;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  animation: surbrillance 2s ease-in-out infinite;
+}
+
+/* DROITE : Bouton inscription + Croix */
+.bandeau-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.btn-inscription,
+.btn-bandeau {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFC107;
+  color: #000;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 20px;
+  min-height: 44px;
+  min-width: 44px;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(255, 193, 7, 0.3);
+  pointer-events: auto;
+  touch-action: manipulation;
+}
+
+.btn-inscription:hover,
+.btn-bandeau:hover {
+  background: #FFD54F;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.4);
+}
+
+/* BOUTON FERMER (CROIX AVEC ROND) */
+.btn-close-bandeau,
+.bandeau-close {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid #fff;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.btn-close-bandeau:hover,
+.bandeau-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(90deg);
+}
+
+.btn-close-bandeau i,
+.bandeau-close svg {
+  color: #fff;
+  font-size: 16px;
+}
+
+.bandeau-close svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Header : espace pour le bandeau fixe */
+/* Bandeau au-dessus pour que les boutons soient cliquables sur mobile */
+#bandeau-evenement,
+.bandeau-evenement,
+.bandeau-evenements {
+  z-index: 40000 !important;
+}
+
+/* Header : décalage quand le bandeau est affiché (frère direct) */
+#bandeau-evenement + .header-principal,
+.bandeau-evenement + .header-principal,
+.bandeau-evenements + .header-principal {
+  margin-top: 54px;
+  transition: margin-top 0.3s ease;
+}
+
+body.bandeau-ferme .header-principal {
+  margin-top: 0 !important;
+}
+
+@media (max-width: 768px) {
+  .bandeau-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    min-height: 50px;
+  }
+
+  .bandeau-center {
+    order: 1;
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
+  .bandeau-right {
+    order: 2;
+    justify-content: center;
+    flex: 1 1 auto;
+    gap: 12px;
+    display: flex;
+    align-items: center;
+  }
+
+  .bandeau-left {
+    display: none;
+  }
+
+  .bandeau-text,
+  .bandeau-title {
+    font-size: 14px;
+  }
+
+  .btn-inscription,
+  .btn-bandeau {
+    min-height: 40px;
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .btn-close-bandeau,
+  .bandeau-close {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+    flex-shrink: 0;
+  }
+
+  .bandeau-close svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bandeau-text,
+  .bandeau-title {
+    font-size: 13px;
+  }
+
+  .btn-inscription,
+  .btn-bandeau {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+}

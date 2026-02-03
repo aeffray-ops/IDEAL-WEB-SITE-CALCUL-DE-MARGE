@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Outil Calcul de Marge | IDEAL</title>
+  <link rel="stylesheet" href="css/marge.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Topbar standalone */
+    .marge-only-topbar{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #6D071A;
+      color: #fff;
+      padding: 10px 0;
+    }
+    .marge-only-topbar__inner{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .marge-only-brand{ font-weight: 800; font-family: 'Poppins', sans-serif; font-size: 16px; }
+    .marge-only-back{
+      color: #FFD24A;
+      text-decoration: none;
+      font-weight: 700;
+      font-family: 'Poppins', sans-serif;
+    }
+    .marge-only-back:hover{ text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <header class="marge-only-topbar">
+    <div class="marge-only-topbar__inner">
+      <div class="marge-only-brand">IDEAL — Outil calcul de marge</div>
+      <a class="marge-only-back" href="index.html">Retour</a>
+    </div>
+  </header>
+
+  <div id="margeModalOverlay" class="marge-modal-overlay">
+    <div class="marge-modal">
+      <h2>Créer une simulation</h2>
+      <div id="margeModalError" class="marge-error"></div>
+      <form id="margeModalForm">
+        <div class="marge-field">
+          <label for="modalNom">Nom du projet *</label>
+          <input type="text" id="modalNom" required placeholder="Ex: Rue des Lilas">
+        </div>
+        <div class="marge-field">
+          <label for="modalVille">Ville *</label>
+          <input type="text" id="modalVille" required placeholder="Ex: Bordeaux">
+        </div>
+        <div class="marge-field">
+          <label for="modalAuteur">Auteur (optionnel)</label>
+          <input type="text" id="modalAuteur" placeholder="Agent marchand">
+        </div>
+        <div class="marge-field">
+          <label for="modalNbLots">Nombre de lots (1 à 5) *</label>
+          <input type="number" id="modalNbLots" min="1" max="5" value="1" required>
+        </div>
+        <div class="marge-modal-actions">
+          <button type="submit" class="marge-btn marge-btn-primary">Créer la simulation</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <main class="marge-page" id="margeMain" style="display:none;">
+    <div class="marge-container">
+      <aside class="marge-historique">
+        <h3>Historique</h3>
+        <ul class="marge-historique-list" id="margeHistoriqueList"></ul>
+      </aside>
+      <div class="marge-calculateur">
+        <div id="margeCalcError" class="marge-error"></div>
+        <div class="marge-tabs">
+          <button type="button" class="marge-tab active" data-tab="lots">LOT(S)</button>
+          <button type="button" class="marge-tab" data-tab="recap">RÉCAPITULATIF</button>
+        </div>
+        <div id="tabLots" class="marge-tab-content active">
+          <div class="marge-lots-grid" id="margeLotsGrid"></div>
+        </div>
+        <div id="tabRecap" class="marge-tab-content">
+          <div id="margeRecapContent"></div>
+        </div>
+        <div class="marge-actions">
+          <button type="button" class="marge-btn marge-btn-primary" id="margeBtnSave">Enregistrer</button>
+          <button type="button" class="marge-btn marge-btn-secondary" id="margeBtnPdf" disabled>Exporter PDF</button>
+          <button type="button" class="marge-btn marge-btn-secondary" id="margeBtnReset">Réinitialiser</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="js/marge-model.js"></script>
+  <script src="js/marge-calcul.js"></script>
+  <script src="js/marge-ui.js"></script>
+  <script src="js/marge-storage.js"></script>
+  <script src="js/marge-pdf.js"></script>
+  <script>
+(function() {
+  let simulation = null;
+  let savedId = null;
+  let lastResult = null;
+
+  function refresh() {
+    MargeCalcul.syncSimulationFromDOM(simulation);
+    lastResult = MargeCalcul.compute(simulation);
+    simulation.lotsCalc = lastResult.lotsCalc;
+    simulation.recap = lastResult.recap;
+    simulation.frais = lastResult.frais;
+    MargeUI.updateLotOutputs(lastResult.lotsCalc);
+    MargeUI.updateFraisOutputs(lastResult.frais);
+    MargeUI.updateDecisionBoxLots(lastResult);
+    const recapEl = document.getElementById('margeRecapContent');
+    const honVal = (simulation.fraisDivers && simulation.fraisDivers.honorairesAI != null) ? simulation.fraisDivers.honorairesAI : (simulation.honorairesAgentsImmo || 0);
+    recapEl.innerHTML = MargeUI.renderRecapTab(lastResult, simulation.meta.nbLots || 1, honVal);
+  }
+
+  function renderLots() {
+    const grid = document.getElementById('margeLotsGrid');
+    const nb = simulation.meta.nbLots || simulation.lots.length;
+    grid.innerHTML = MargeUI.renderLotTab(simulation, nb, refresh);
+    MargeUI.bindLotInputs(grid, simulation, refresh);
+    MargeUI.bindFraisInputs(grid, simulation, refresh);
+    refresh();
+  }
+
+  function refreshHistorique() {
+    const list = document.getElementById('margeHistoriqueList');
+    const items = MargeStorage.list();
+    list.innerHTML = items.map(item => {
+      const m = item.meta || {};
+      const dt = m.timestamp ? new Date(m.timestamp).toLocaleDateString('fr-FR') : '-';
+      const dec = (item.recap && item.recap.decision) ? item.recap.decision.code : '-';
+      const decClass = (item.recap && item.recap.decision) ? item.recap.decision.classe : '';
+      return '<li class="marge-historique-item" data-id="' + m.id + '">' +
+        '<div class="nom">' + (m.nom || 'Sans nom') + '</div>' +
+        '<div class="ville">' + (m.ville || '') + '</div>' +
+        '<div class="date">' + dt + '</div>' +
+        '<span class="decision ' + decClass + '">' + dec + '</span>' +
+        '<div class="marge-historique-actions">' +
+        '<button type="button" data-action="load" data-id="' + m.id + '">Charger</button>' +
+        '<button type="button" data-action="dup" data-id="' + m.id + '">Dupliquer</button>' +
+        '<button type="button" data-action="del" data-id="' + m.id + '">Supprimer</button>' +
+        '</div></li>';
+    }).join('');
+    list.querySelectorAll('[data-action]').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const id = this.dataset.id, action = this.dataset.action;
+        if (action === 'load') loadSimulation(id);
+        else if (action === 'dup') { const newId = MargeStorage.duplicate(id); refreshHistorique(); if (newId) loadSimulation(newId); }
+        else if (action === 'del') { MargeStorage.remove(id); refreshHistorique(); if (savedId === id) { savedId = null; updatePdfButton(); } }
+      });
+    });
+    list.querySelectorAll('.marge-historique-item').forEach(li => {
+      li.addEventListener('click', function(e) { if (!e.target.closest('[data-action]')) loadSimulation(this.dataset.id); });
+    });
+  }
+
+  function loadSimulation(id) {
+    const item = MargeStorage.load(id);
+    if (!item) return;
+    const fd = { ...MargeModel.createDefaultFraisDivers(), ...(item.fraisDivers || {}) };
+    simulation = {
+      meta: item.meta || {},
+      lots: JSON.parse(JSON.stringify(item.lots || [])),
+      fraisDivers: fd,
+      honorairesAgentsImmo: fd.honorairesAI ?? item.honorairesAgentsImmo ?? 0,
+      recap: null,
+      lotsCalc: [],
+      frais: null,
+    };
+    const n = simulation.meta.nbLots || simulation.lots.length;
+    while (simulation.lots.length < n) simulation.lots.push(MargeModel.createDefaultLot());
+    simulation.lots = simulation.lots.slice(0, n);
+    savedId = id;
+    renderLots();
+    updatePdfButton();
+  }
+
+  function saveSimulation() {
+    lastResult = MargeCalcul.compute(simulation);
+    simulation.recap = lastResult.recap;
+    simulation.lotsCalc = lastResult.lotsCalc;
+    simulation.frais = lastResult.frais;
+    simulation.meta = { ...simulation.meta, nbLots: simulation.lots.length };
+    savedId = MargeStorage.save(simulation);
+    refreshHistorique();
+    updatePdfButton();
+  }
+
+  function updatePdfButton() {
+    const btn = document.getElementById('margeBtnPdf');
+    if (savedId) {
+      btn.disabled = false;
+      btn.classList.add('marge-btn-pdf-active');
+      btn.classList.remove('marge-btn-secondary');
+    } else {
+      btn.disabled = true;
+      btn.classList.remove('marge-btn-pdf-active');
+      btn.classList.add('marge-btn-secondary');
+    }
+  }
+
+  function resetSimulation() {
+    if (!confirm('Réinitialiser ? Tous les champs seront effacés.')) return;
+    savedId = null;
+    simulation = MargeModel.createSimulation(simulation.meta.nbLots || 1);
+    simulation.meta.nom = simulation.meta.nom || '';
+    simulation.meta.ville = simulation.meta.ville || '';
+    simulation.meta.auteur = simulation.meta.auteur || '';
+    renderLots();
+    updatePdfButton();
+  }
+
+  document.getElementById('margeModalForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const nom = document.getElementById('modalNom').value.trim();
+    const ville = document.getElementById('modalVille').value.trim();
+    let nbLots = parseInt(document.getElementById('modalNbLots').value, 10);
+    if (nbLots < 1 || nbLots > 5) nbLots = 1;
+    const errEl = document.getElementById('margeModalError');
+    if (!nom || !ville) {
+      errEl.textContent = 'Nom et Ville sont requis.';
+      errEl.classList.add('visible');
+      return;
+    }
+    errEl.classList.remove('visible');
+    simulation = MargeModel.createSimulation(nbLots);
+    simulation.meta.nom = nom;
+    simulation.meta.ville = ville;
+    simulation.meta.auteur = document.getElementById('modalAuteur').value.trim();
+    document.getElementById('margeModalOverlay').style.display = 'none';
+    document.getElementById('margeMain').style.display = 'block';
+    renderLots();
+    refreshHistorique();
+  });
+
+  document.querySelectorAll('.marge-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+      document.querySelectorAll('.marge-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.marge-tab-content').forEach(c => c.classList.remove('active'));
+      this.classList.add('active');
+      const target = this.dataset.tab;
+      document.getElementById('tab' + (target === 'lots' ? 'Lots' : 'Recap')).classList.add('active');
+    });
+  });
+
+  document.getElementById('margeBtnSave').addEventListener('click', saveSimulation);
+  document.getElementById('margeBtnReset').addEventListener('click', resetSimulation);
+  document.getElementById('margeBtnPdf').addEventListener('click', function() {
+    if (!savedId) return;
+    const full = { ...simulation, lotsCalc: simulation.lotsCalc, recap: simulation.recap, frais: simulation.frais };
+    MargePDF.exportPdf(full);
+  });
+})();
+  </script>
+</body>
+</html>

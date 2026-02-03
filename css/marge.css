@@ -1,0 +1,303 @@
+/* ========================================
+   OUTIL CALCUL DE MARGE - STYLES
+   Fidèle à l'Excel
+======================================== */
+.marge-page {
+  font-family: 'Poppins', sans-serif;
+  background: #F5F5F5;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.marge-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 24px;
+  min-height: calc(100vh - 100px);
+}
+
+@media (max-width: 992px) {
+  .marge-container { grid-template-columns: 1fr; }
+}
+
+/* Historique */
+.marge-historique {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  height: fit-content;
+  position: sticky;
+  top: 20px;
+}
+
+.marge-historique h3 { color: #6D071A; font-size: 18px; margin-bottom: 16px; }
+.marge-historique-list { list-style: none; padding: 0; margin: 0; }
+.marge-historique-item {
+  padding: 12px;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 13px;
+}
+
+.marge-historique-item:hover { border-color: #6D071A; background: rgba(109,7,26,0.05); }
+.marge-historique-item .nom { font-weight: 600; color: #111; }
+.marge-historique-item .ville { color: #666; }
+.marge-historique-item .date { font-size: 11px; color: #999; }
+.marge-historique-item .decision {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-top: 4px;
+}
+.marge-historique-item .decision.no-go { background: #fecaca; color: #991b1b; }
+.marge-historique-item .decision.reflexion,
+.marge-historique-item .decision.reflexion2 { background: #fef3c7; color: #92400e; }
+.marge-historique-item .decision.go { background: #bbf7d0; color: #166534; }
+.marge-historique-actions { display: flex; gap: 6px; margin-top: 8px; }
+.marge-historique-actions button {
+  padding: 4px 8px;
+  font-size: 11px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #e5e5e5;
+  color: #333;
+}
+.marge-historique-actions button:hover { background: #6D071A; color: #fff; }
+
+/* Calculateur */
+.marge-calculateur {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+}
+
+/* Onglets */
+.marge-tabs { display: flex; gap: 8px; margin-bottom: 24px; border-bottom: 2px solid #e5e5e5; }
+.marge-tab {
+  padding: 12px 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  color: #666;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.2s;
+}
+.marge-tab:hover { color: #6D071A; }
+.marge-tab.active { color: #6D071A; border-bottom-color: #6D071A; }
+.marge-tab-content { display: none; }
+.marge-tab-content.active { display: block; }
+
+/* Inputs jaunes (saisie) */
+.marge-input-yellow {
+  background: #FFF2CC !important;
+  border: 1px solid #d0c48a !important;
+  padding: 8px 12px !important;
+  border-radius: 4px !important;
+  font-size: 13px !important;
+  width: 100%;
+  max-width: 140px;
+  box-sizing: border-box;
+}
+.marge-input-yellow:focus {
+  outline: none;
+  border-color: #6D071A !important;
+  box-shadow: 0 0 0 2px rgba(109,7,26,0.2);
+}
+
+/* Inputs gris (calculé) */
+.marge-input-gray {
+  background: #E5E5E5 !important;
+  border: 1px solid #d1d5db !important;
+  padding: 8px 12px !important;
+  border-radius: 4px !important;
+  font-size: 13px !important;
+  max-width: 140px;
+  box-sizing: border-box;
+  color: #374151;
+}
+
+/* Blocs LOT */
+.marge-lots-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+.marge-lot-block {
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 16px;
+  background: #fafafa;
+}
+.marge-lot-block h4 { color: #6D071A; margin-bottom: 12px; font-size: 16px; }
+.marge-section { margin-bottom: 20px; }
+.marge-section strong { display: block; margin-bottom: 10px; font-size: 13px; }
+.marge-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+.marge-row label { min-width: 180px; font-size: 12px; }
+.marge-row input, .marge-row select { flex: 0 0 auto; }
+.marge-out { font-size: 13px; color: #374151; margin-left: 8px; }
+.marge-frais-divers { background: #f9f9f9; padding: 16px; border-radius: 8px; margin-top: 24px; }
+.marge-out-frais { font-size: 13px; color: #374151; margin-left: 8px; }
+
+/* Récap */
+.marge-recap-block { margin-bottom: 24px; border: 1px solid #e5e5e5; border-radius: 8px; overflow: hidden; }
+.marge-recap-block strong { display: block; padding: 12px; background: #f5f5f5; font-size: 14px; }
+.marge-recap-row {
+  display: grid;
+  grid-template-columns: 280px repeat(5, minmax(100px, 1fr)) 140px;
+  gap: 8px;
+  padding: 8px 12px;
+  border-bottom: 1px solid #eee;
+  font-size: 13px;
+  align-items: center;
+}
+.marge-recap-row:last-child { border-bottom: none; }
+.marge-recap-row .marge-total { font-weight: 700; }
+.marge-neg { color: #dc2626 !important; }
+.marge-decision-zone {
+  margin-top: 32px;
+  padding: 24px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  border: 2px solid #e5e5e5;
+}
+.marge-legend { font-size: 14px; margin-bottom: 12px; }
+.marge-decision-box {
+  padding: 16px 24px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 16px;
+}
+.marge-decision-box.no-go { background: #fecaca; color: #991b1b; border: 2px solid #dc2626; }
+.marge-decision-box.reflexion,
+.marge-decision-box.reflexion2 { background: #fef3c7; color: #92400e; border: 2px solid #d97706; }
+.marge-decision-box.go { background: #bbf7d0; color: #166534; border: 2px solid #16a34a; }
+.marge-kpi-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 14px; }
+.marge-criteres { margin-top: 16px; font-size: 13px; }
+.marge-criteres p { margin: 4px 0; }
+
+/* Barre d'actions */
+.marge-actions { display: flex; gap: 12px; margin-top: auto; padding-top: 24px; border-top: 1px solid #e5e5e5; }
+.marge-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.marge-btn-primary { background: #6D071A; color: #fff; }
+.marge-btn-primary:hover { background: #8B0920; transform: translateY(-1px); }
+.marge-btn-secondary { background: #e5e5e5; color: #333; }
+.marge-btn-secondary:hover { background: #d1d5db; }
+.marge-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
+.marge-btn-pdf-active { background: #FFB800; color: #111; }
+.marge-btn-pdf-active:hover { background: #e6a600; transform: translateY(-1px); }
+
+/* Modal */
+.marge-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+.marge-modal {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px;
+  max-width: 420px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+.marge-modal h2 { color: #6D071A; margin-bottom: 24px; font-size: 24px; }
+.marge-modal .marge-field { margin-bottom: 16px; }
+.marge-modal input, .marge-modal select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px solid #e5e5e5;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+.marge-modal input:focus, .marge-modal select:focus {
+  outline: none;
+  border-color: #6D071A;
+}
+.marge-modal-actions { display: flex; justify-content: flex-end; margin-top: 24px; gap: 12px; }
+.marge-error { background: #fecaca; color: #991b1b; padding: 12px; border-radius: 8px; font-size: 14px; margin-bottom: 16px; display: none; }
+.marge-error.visible { display: block; }
+
+/* Encadré DÉCISION (onglet LOT) */
+.decision-box-lots { margin-bottom: 24px; }
+.decision-box {
+  background: #fafafa;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 16px 20px;
+  width: 100%;
+}
+.decision-box-header { font-size: 16px; font-weight: 700; color: #6D071A; margin-bottom: 12px; }
+.decision-box-kpis {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+.decision-kpi { display: flex; flex-direction: column; gap: 2px; }
+.decision-kpi .label { font-size: 12px; color: #666; }
+.decision-kpi .value { font-size: 15px; font-weight: 700; color: #111; }
+.decision-badge {
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  margin-left: auto;
+}
+.decision-badge.is-red,
+.decision-badge.no-go { background: #fecaca; color: #991b1b; border: 1px solid #dc2626; }
+.decision-badge.is-orange,
+.decision-badge.reflexion,
+.decision-badge.reflexion2 { background: #fef3c7; color: #92400e; border: 1px solid #d97706; }
+.decision-badge.is-green,
+.decision-badge.go { background: #bbf7d0; color: #166534; border: 1px solid #16a34a; }
+.decision-criteres { font-size: 12px; color: #666; line-height: 1.6; }
+.readonly-gray {
+  background: #E5E5E5 !important;
+  border: 1px solid #d1d5db !important;
+  color: #374151;
+}
+
+/* Récap colonnes dynamiques */
+.marge-recap-cols2 .marge-recap-row { grid-template-columns: 1fr 140px; }
+.marge-recap-cols4 .marge-recap-row { grid-template-columns: 1fr minmax(90px,1fr) minmax(90px,1fr) 120px; }
+.marge-recap-cols5 .marge-recap-row { grid-template-columns: 1fr repeat(2, minmax(90px,1fr)) 120px; }
+.marge-recap-cols6 .marge-recap-row { grid-template-columns: 1fr repeat(3, minmax(90px,1fr)) 120px; }
+.marge-recap-cols7 .marge-recap-row { grid-template-columns: 1fr repeat(4, minmax(90px,1fr)) 120px; }
+.marge-recap-cols8 .marge-recap-row { grid-template-columns: 1fr repeat(5, minmax(90px,1fr)) 120px; }
+.marge-recap-row:nth-child(even) { background: #fafafa; }
+.marge-recap-row { padding: 10px 14px; }
