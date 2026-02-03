@@ -301,3 +301,123 @@
 .marge-recap-cols8 .marge-recap-row { grid-template-columns: 1fr repeat(5, minmax(90px,1fr)) 120px; }
 .marge-recap-row:nth-child(even) { background: #fafafa; }
 .marge-recap-row { padding: 10px 14px; }
+
+/* ========================================
+   NOUVELLE MISE EN PAGE ONGLET LOT(S)
+   Style "application de calcul"
+======================================== */
+
+.marge-lots-page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.marge-decision {
+  width: 100%;
+}
+
+.marge-two-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .marge-two-cols {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Panneaux avec style "app" */
+.marge-lot-panel,
+.marge-frais-panel {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.marge-lot-panel .marge-lot-block {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin-bottom: 16px;
+}
+
+.marge-lot-panel .marge-lot-block:last-child {
+  margin-bottom: 0;
+}
+
+.marge-frais-panel .marge-frais-divers {
+  background: transparent;
+  padding: 0;
+  margin-top: 0;
+}
+
+/* Inputs plus grands et lisibles (style app) */
+.marge-lots-page input,
+.marge-lots-page select {
+  height: 38px;
+  font-size: 15px;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+.marge-lots-page label {
+  font-size: 13px;
+  min-width: 200px;
+}
+
+.marge-lots-page .marge-row {
+  margin-bottom: 10px;
+  gap: 14px;
+}
+
+.marge-lots-page .marge-section {
+  margin-bottom: 18px;
+}
+
+.marge-lots-page .marge-section strong {
+  font-size: 14px;
+  color: #6D071A;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #eee;
+}
+
+.marge-lots-page h4 {
+  font-size: 17px;
+  margin-bottom: 14px;
+}
+
+/* Decision box dans le contexte lots-page */
+.marge-lots-page .decision-box {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  padding: 18px 20px;
+}
+
+.marge-lots-page .decision-box-header {
+  font-size: 17px;
+}
+
+.marge-lots-page .decision-kpi .label {
+  font-size: 13px;
+}
+
+.marge-lots-page .decision-kpi .value {
+  font-size: 16px;
+}
+
+.marge-lots-page .decision-badge {
+  font-size: 15px;
+  padding: 8px 16px;
+}
+
+.marge-lots-page .decision-criteres {
+  font-size: 13px;
+  line-height: 1.7;
+}

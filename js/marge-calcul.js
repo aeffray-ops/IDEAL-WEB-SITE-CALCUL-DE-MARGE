@@ -155,14 +155,13 @@ const MargeCalcul = (function() {
   }
 
   // -------------------------
-  // Décision Excel V5.2 (selon ta légende: <30k NO GO | 30-50k 🟠 | 50-80k 🟡 | >80k 🟢) [Source](https://www.genspark.ai/api/files/s/HSErlS1e)
+  // Décision - Seuils mis à jour
   // -------------------------
   function getDecisionExcelV52(margeNetteProjet) {
-    const m = clamp0(margeNetteProjet);
-    if (m < 30000) return { code: '🔴 NO GO', seuil: '< 30 000 €', classe: 'no-go' };
-    if (m < 50000) return { code: '🟠', seuil: '30 000 € - 50 000 €', classe: 'orange' };
-    if (m < 80000) return { code: '🟡 RÉFLEXION', seuil: '50 000 € - 80 000 €', classe: 'reflexion' };
-    return { code: '🟢 GO', seuil: '> 80 000 €', classe: 'go' };
+    const m = toNum(margeNetteProjet);
+    if (m < 10000) return { code: '🔴 NO GO', seuil: '< 10 000 €', classe: 'no-go' };
+    if (m <= 25000) return { code: '🟠 RÉFLEXION', seuil: '10 000 € – 25 000 €', classe: 'reflexion' };
+    return { code: '🟢 GO', seuil: '≥ 25 001 €', classe: 'go' };
   }
 
   // -------------------------
@@ -221,9 +220,6 @@ const MargeCalcul = (function() {
 
     const margeNetteProjet = round2(margeNetteNetteTRV + margeNetteNetteBien); // 26k sur ton exemple [Source](https://www.genspark.ai/api/files/s/HSErlS1e)
 
-    // KPI Ratio Marge/CA = marge nette projet / prix de vente avec travaux et com
-    const ratioMargeCA = prixVenteAvecTravauxEtCom > 0 ? round2((margeNetteProjet / prixVenteAvecTravauxEtCom) * 100) : 0;
-
     // ROI Projet Total : ton Excel affiche 11,43% dans la capture [Source](https://www.genspark.ai/api/files/s/HSErlS1e)
     // Pour être EXACT à 11,43%, il faut la formule Excel exacte de sa base.
     // Ici on met une base cohérente par défaut : coût total acquisition + honoraires.
@@ -272,7 +268,6 @@ const MargeCalcul = (function() {
       // KPI
       investissementTotalPourROI,
       ROIProjetTotal,
-      ratioMargeCA,
 
       // Décision
       decision,

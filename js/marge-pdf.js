@@ -41,7 +41,6 @@ const MargePDF = (function() {
     html += '<tr><td>Investissement total</td><td>' + formatE(recap.investissementTotalPourROI) + '</td></tr>';
     html += '<tr><td>Marge nette après TVA</td><td>' + formatE(recap.totalMargeNetteApresTVASurMarge) + '</td></tr>';
     html += '<tr><td>ROI</td><td>' + formatPct(recap.ROIProjetTotal) + '</td></tr>';
-    html += '<tr><td>Ratio marge/CA</td><td>' + formatPct(recap.ratioMargeCA) + '</td></tr>';
     html += '<tr><td>Prix vente avec travaux</td><td>' + formatE(recap.prixVenteAvecTravauxEtCom) + '</td></tr></table></div>';
 
     if (lotsCalc.length > 0) {

@@ -25,7 +25,19 @@ const MargeUI = (function() {
 
   function renderLotTab(simulation, nbLots, onInput) {
     const lots = simulation.lots || [];
-    let html = '<div id="margeDecisionBoxLots" class="decision-box-lots"></div>';
+    const fd = simulation.fraisDivers || {};
+    
+    // Structure: marge-lots-page > decision (pleine largeur) > marge-two-cols (lot + frais)
+    let html = '<div class="marge-lots-page">';
+    
+    // Section DÉCISION en haut
+    html += '<section class="marge-decision" id="margeDecisionBoxLots"></section>';
+    
+    // Conteneur deux colonnes
+    html += '<div class="marge-two-cols">';
+    
+    // Colonne gauche: LOT(S)
+    html += '<section class="marge-lot-panel">';
     for (let i = 0; i < nbLots; i++) {
       const n = i + 1;
       const lot = lots[i] || {};
@@ -59,7 +71,10 @@ const MargeUI = (function() {
       html += '<div class="marge-row"><label>total</label><input type="text" class="' + G + '" id="lot' + n + '_totalMargeIHP" readonly></div>';
       html += '</div></div>';
     }
-    const fd = simulation.fraisDivers || {};
+    html += '</section>'; // fin marge-lot-panel
+    
+    // Colonne droite: FRAIS DIVERS
+    html += '<section class="marge-frais-panel">';
     html += '<div class="marge-section marge-frais-divers"><strong>F) FRAIS DIVERS (PROJET)</strong>';
     html += '<div class="marge-row"><label>Prix d\'achat total (somme des lots)</label><input type="text" class="' + G + '" id="prix_achat_total" readonly></div>';
     html += '<div class="marge-row"><label>Taux notaire (%)</label>' + inputYellow({ id: 'notaire_pct', 'data-fd': 'notairePct', value: fd.notairePct ?? 3 }) + '</div>';
@@ -71,6 +86,11 @@ const MargeUI = (function() {
     html += '<div class="marge-row"><label>Total frais divers (€)</label><input type="text" class="' + G + '" id="total_frais_divers" readonly></div>';
     html += '<div class="marge-row"><label>Coût total acquisition (€)</label><input type="text" class="' + G + '" id="cout_total_acquisition" readonly></div>';
     html += '</div>';
+    html += '</section>'; // fin marge-frais-panel
+    
+    html += '</div>'; // fin marge-two-cols
+    html += '</div>'; // fin marge-lots-page
+    
     return html;
   }
 
@@ -157,8 +177,7 @@ const MargeUI = (function() {
     html += '<div class="marge-decision-box ' + (d.classe || '') + '">' + (d.code || '') + '</div>';
     html += '<div class="marge-kpi-row"><span>💰 Marge Nette Projet</span><span>' + fmt(recap.margeNetteProjet) + '</span></div>';
     html += '<div class="marge-kpi-row"><span>📈 ROI Projet Total</span><span>' + fmt(recap.ROIProjetTotal, true) + '</span></div>';
-    html += '<div class="marge-kpi-row"><span>📊 Ratio Marge/CA</span><span>' + fmt(recap.ratioMargeCA, true) + '</span></div>';
-    html += '<div class="marge-criteres">🔴 NO GO &lt; 10 000 €<br>🟠 RÉFLEXION 10 000 € – 30 000 €<br>🟢 GO &gt; 30 000 €</div>';
+    html += '<div class="marge-criteres">🔴 NO GO &lt; 10 000 €<br>🟠 RÉFLEXION 10 000 € – 25 000 €<br>🟢 GO ≥ 25 001 €</div>';
     html += '</div>';
     return html;
   }
@@ -216,7 +235,7 @@ const MargeUI = (function() {
       '<div class="decision-box-kpis"><div class="decision-kpi"><span class="label">💰 Marge Nette Projet</span><span class="value">' + fmt(r.margeNetteProjet) + '</span></div>' +
       '<div class="decision-kpi"><span class="label">📈 ROI Projet Total</span><span class="value">' + fmt(r.ROIProjetTotal, true) + '</span></div>' +
       '<span class="decision-badge ' + (d.classe || '') + '">' + (d.code || '') + '</span></div>' +
-      '<div class="decision-criteres">🔴 NO GO &lt; 10 000 €<br>🟠 RÉFLEXION 10 000 € – 30 000 €<br>🟢 GO &gt; 30 000 €</div></div>';
+      '<div class="decision-criteres">🔴 NO GO &lt; 10 000 €<br>🟠 RÉFLEXION 10 000 € – 25 000 €<br>🟢 GO ≥ 25 001 €</div></div>';
   }
 
   return {
