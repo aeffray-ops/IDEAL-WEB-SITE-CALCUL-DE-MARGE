@@ -203,8 +203,10 @@ const MargeUI = (function() {
     const d = recap.decision || {};
     html += '<div class="marge-decision-zone">';
     html += '<div class="marge-decision-box ' + (d.classe || '') + '">' + (d.code || '') + '</div>';
-    html += '<div class="marge-kpi-row"><span>💰 Marge Nette Projet</span><span>' + fmt(recap.margeNetteProjet) + '</span></div>';
-    html += '<div class="marge-kpi-row"><span>📈 ROI Projet Total</span><span>' + fmt(recap.ROIProjetTotal, true) + '</span></div>';
+    html += '<div class="marge-kpi-grid">';
+    html += '<div class="marge-kpi-card"><span class="marge-kpi-label">💰 Marge Nette Projet</span><span class="marge-kpi-value">' + fmt(recap.margeNetteProjet) + '</span></div>';
+    html += '<div class="marge-kpi-card"><span class="marge-kpi-label">📈 ROI Projet Total</span><span class="marge-kpi-value">' + fmt(recap.ROIProjetTotal, true) + '</span></div>';
+    html += '</div>';
     html += '<div class="marge-criteres">🔴 NO GO &lt; 10 000 €<br>🟠 RÉFLEXION 10 000 € – 25 000 €<br>🟢 GO ≥ 25 001 €</div>';
     html += '</div>';
     return html;
@@ -259,11 +261,20 @@ const MargeUI = (function() {
     const r = result.recap;
     const d = r.decision || {};
     const fmt = (n, pct) => pct ? C.formatPct(n) : C.formatEuro(n);
-    el.innerHTML = '<div class="decision-box"><div class="decision-box-header">🚦 DÉCISION</div>' +
-      '<div class="decision-box-kpis"><div class="decision-kpi"><span class="label">💰 Marge Nette Projet</span><span class="value">' + fmt(r.margeNetteProjet) + '</span></div>' +
-      '<div class="decision-kpi"><span class="label">📈 ROI Projet Total</span><span class="value">' + fmt(r.ROIProjetTotal, true) + '</span></div>' +
-      '<span class="decision-badge ' + (d.classe || '') + '">' + (d.code || '') + '</span></div>' +
-      '<div class="decision-criteres">🔴 NO GO &lt; 10 000 €<br>🟠 RÉFLEXION 10 000 € – 25 000 €<br>🟢 GO ≥ 25 001 €</div></div>';
+    el.innerHTML = '<div class="decision-box">' +
+      '<div class="decision-layout">' +
+        '<div class="decision-side">' +
+          '<div class="decision-kpi"><span class="label">💰 Marge Nette Projet</span><span class="value">' + fmt(r.margeNetteProjet) + '</span></div>' +
+        '</div>' +
+        '<div class="decision-center">' +
+          '<div class="decision-badge ' + (d.classe || '') + '">' + (d.code || '') + '</div>' +
+        '</div>' +
+        '<div class="decision-side">' +
+          '<div class="decision-kpi"><span class="label">📈 ROI Projet Total</span><span class="value">' + fmt(r.ROIProjetTotal, true) + '</span></div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="decision-criteres">🔴 NO GO &lt; 10 000 € · 🟠 RÉFLEXION 10 000 € – 25 000 € · 🟢 GO ≥ 25 001 €</div>' +
+    '</div>';
   }
 
   return {

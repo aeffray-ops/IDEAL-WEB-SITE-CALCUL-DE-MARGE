@@ -210,45 +210,41 @@
   background: linear-gradient(135deg, #6D071A 0%, #9B1030 100%);
   border: none;
   border-radius: 14px;
-  padding: 24px 28px;
+  padding: 20px 28px 16px;
   width: 100%;
-  box-shadow: 0 6px 20px rgba(109,7,26,0.3);
+  box-shadow: 0 4px 16px rgba(109,7,26,0.25);
 }
 
-.decision-box-header {
-  font-size: 17px;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 16px;
-}
-
-.decision-box-kpis {
+/* Layout 3 zones : KPI | BADGE centré | KPI */
+.decision-layout {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 14px;
+  gap: 16px;
 }
 
-.decision-kpi {
+.decision-side {
+  flex: 1;
+}
+
+.decision-center {
+  flex-shrink: 0;
   display: flex;
-  flex-direction: column;
-  gap: 4px;
-  background: rgba(255,255,255,0.10);
-  padding: 14px 20px;
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.12);
+  justify-content: center;
 }
 
-.decision-kpi .label { font-size: 12px; color: rgba(255,255,255,0.65); font-weight: 500; }
-.decision-kpi .value { font-size: 20px; font-weight: 700; color: #fff; }
-
+/* Badge gros et proéminent */
 .decision-badge {
-  padding: 10px 20px;
-  border-radius: 10px;
-  font-size: 15px;
-  font-weight: 700;
-  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  border-radius: 12px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  white-space: nowrap;
+  min-width: 160px;
+  text-align: center;
 }
 
 .decision-badge.is-red,
@@ -260,11 +256,34 @@
 .decision-badge.is-green,
 .decision-badge.go { background: #bbf7d0; color: #166534; border: 2px solid #16a34a; }
 
-.decision-criteres {
-  font-size: 12px;
-  color: rgba(255,255,255,0.50);
-  line-height: 1.8;
+/* KPI cards */
+.decision-kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: rgba(255,255,255,0.10);
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.12);
+  min-width: 140px;
 }
+
+.decision-kpi .label { font-size: 11px; color: rgba(255,255,255,0.6); font-weight: 500; }
+.decision-kpi .value { font-size: 18px; font-weight: 700; color: #fff; }
+
+/* Critères en ligne sous le layout */
+.decision-criteres {
+  font-size: 11px;
+  color: rgba(255,255,255,0.40);
+  margin-top: 12px;
+  text-align: center;
+  letter-spacing: 0.2px;
+}
+
+/* Legacy compat */
+.decision-box-header { display: none; }
+.decision-badge-row { display: flex; justify-content: center; margin-bottom: 14px; }
+.decision-box-kpis { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; }
 
 /* ---- LOTS WRAPPER ---- */
 .lots-wrapper {
@@ -508,20 +527,42 @@
 }
 
 .marge-decision-box {
-  padding: 16px 24px;
-  border-radius: 10px;
-  font-size: 18px;
-  font-weight: 700;
+  padding: 22px 32px;
+  border-radius: 14px;
+  font-size: 28px;
+  font-weight: 800;
   text-align: center;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
+  letter-spacing: 1px;
 }
 
-.marge-decision-box.no-go { background: #fecaca; color: #991b1b; border: 2px solid #dc2626; }
+.marge-decision-box.no-go { background: #fecaca; color: #991b1b; border: 3px solid #dc2626; }
 .marge-decision-box.reflexion,
 .marge-decision-box.reflexion2,
-.marge-decision-box.orange { background: #fef3c7; color: #92400e; border: 2px solid #d97706; }
-.marge-decision-box.go { background: #bbf7d0; color: #166534; border: 2px solid #16a34a; }
+.marge-decision-box.orange { background: #fef3c7; color: #92400e; border: 3px solid #d97706; }
+.marge-decision-box.go { background: #bbf7d0; color: #166534; border: 3px solid #16a34a; }
 
+.marge-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.marge-kpi-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: #fff;
+  padding: 14px 18px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+}
+
+.marge-kpi-label { font-size: 13px; color: #6b7280; font-weight: 500; }
+.marge-kpi-value { font-size: 20px; font-weight: 700; color: #1e293b; }
+
+/* Ancien format (compat) */
 .marge-kpi-row {
   display: flex;
   justify-content: space-between;
@@ -529,7 +570,7 @@
   font-size: 14px;
 }
 
-.marge-criteres { margin-top: 16px; font-size: 13px; }
+.marge-criteres { margin-top: 16px; font-size: 13px; color: #6b7280; }
 .marge-criteres p { margin: 4px 0; }
 
 .marge-legend { font-size: 14px; margin-bottom: 12px; }
@@ -634,9 +675,10 @@
   .marge-tabs { padding: 0 16px; }
   .marge-actions { padding: 14px 16px; flex-wrap: wrap; }
 
-  .decision-box { padding: 18px; }
-  .decision-box-kpis { flex-direction: column; align-items: stretch; }
-  .decision-badge { margin-left: 0; text-align: center; }
+  .decision-box { padding: 16px; }
+  .decision-layout { flex-direction: column; gap: 12px; }
+  .decision-center { order: -1; }
+  .decision-badge { width: 100%; }
 
   .lot-grid { padding: 14px; gap: 14px; }
   .frais-body { padding: 14px; }
