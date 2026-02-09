@@ -1,54 +1,85 @@
 /* ========================================
-   OUTIL CALCUL DE MARGE - STYLES
-   Fidèle à l'Excel
+   OUTIL CALCUL DE MARGE — STYLES
+   Layout pleine page : sidebar + contenu
 ======================================== */
+
+/* ---- PAGE ---- */
 .marge-page {
   font-family: 'Poppins', sans-serif;
-  background: #F5F5F5;
+  background: #f0f2f5;
   min-height: 100vh;
-  padding: 20px;
+  padding: 0;
 }
 
+/* ---- LAYOUT PRINCIPAL (sidebar + main) ---- */
 .marge-container {
-  max-width: 1600px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 24px;
-  min-height: calc(100vh - 100px);
+  display: flex;
+  width: 100%;
+  max-width: none;
+  min-height: calc(100vh - 52px);
+  margin: 0;
+  gap: 0;
 }
 
-@media (max-width: 992px) {
-  .marge-container { grid-template-columns: 1fr; }
-}
-
-/* Historique */
+/* ========================================
+   SIDEBAR HISTORIQUE (dark, sticky)
+======================================== */
 .marge-historique {
-  background: #fff;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  height: fit-content;
+  width: 270px;
+  min-width: 270px;
+  background: #1e293b;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
   position: sticky;
-  top: 20px;
+  top: 52px;
+  height: calc(100vh - 52px);
+  overflow-y: auto;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  z-index: 10;
 }
 
-.marge-historique h3 { color: #6D071A; font-size: 18px; margin-bottom: 16px; }
-.marge-historique-list { list-style: none; padding: 0; margin: 0; }
+.marge-historique h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  padding: 20px 18px 14px;
+  margin: 0;
+  border-bottom: 1px solid #334155;
+  letter-spacing: 0.3px;
+}
+
+.marge-historique-list {
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
 .marge-historique-item {
-  padding: 12px;
-  border: 1px solid #e5e5e5;
+  padding: 12px 14px;
+  border: none;
   border-radius: 8px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   cursor: pointer;
   transition: all 0.2s;
   font-size: 13px;
+  background: #334155;
+  color: #fff;
 }
 
-.marge-historique-item:hover { border-color: #6D071A; background: rgba(109,7,26,0.05); }
-.marge-historique-item .nom { font-weight: 600; color: #111; }
-.marge-historique-item .ville { color: #666; }
-.marge-historique-item .date { font-size: 11px; color: #999; }
+.marge-historique-item:hover {
+  background: #475569;
+  transform: translateX(3px);
+}
+
+.marge-historique-item .nom { font-weight: 600; color: #fff; }
+.marge-historique-item .ville { color: rgba(255,255,255,0.55); font-size: 12px; }
+.marge-historique-item .date { font-size: 11px; color: rgba(255,255,255,0.35); }
+
 .marge-historique-item .decision {
   display: inline-block;
   padding: 2px 8px;
@@ -57,155 +88,363 @@
   font-weight: 700;
   margin-top: 4px;
 }
+
 .marge-historique-item .decision.no-go { background: #fecaca; color: #991b1b; }
 .marge-historique-item .decision.reflexion,
-.marge-historique-item .decision.reflexion2 { background: #fef3c7; color: #92400e; }
+.marge-historique-item .decision.reflexion2,
+.marge-historique-item .decision.orange { background: #fef3c7; color: #92400e; }
 .marge-historique-item .decision.go { background: #bbf7d0; color: #166534; }
-.marge-historique-actions { display: flex; gap: 6px; margin-top: 8px; }
+
+.marge-historique-actions { display: flex; gap: 5px; margin-top: 8px; }
 .marge-historique-actions button {
   padding: 4px 8px;
   font-size: 11px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  background: #e5e5e5;
-  color: #333;
+  background: rgba(255,255,255,0.12);
+  color: #cbd5e1;
+  transition: all 0.15s;
 }
 .marge-historique-actions button:hover { background: #6D071A; color: #fff; }
 
-/* Calculateur */
+/* ========================================
+   CALCULATEUR (zone droite)
+======================================== */
 .marge-calculateur {
-  background: #fff;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  flex: 1;
   display: flex;
   flex-direction: column;
-  overflow-x: auto;
+  overflow-x: hidden;
+  background: #f0f2f5;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  min-width: 0;
 }
 
-/* Onglets */
-.marge-tabs { display: flex; gap: 8px; margin-bottom: 24px; border-bottom: 2px solid #e5e5e5; }
+/* ---- TABS ---- */
+.marge-tabs {
+  display: flex;
+  gap: 0;
+  padding: 0 28px;
+  background: #fff;
+  border-bottom: 2px solid #e5e7eb;
+  margin-bottom: 0;
+}
+
 .marge-tab {
-  padding: 12px 20px;
+  padding: 14px 24px;
   border: none;
   background: none;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
-  color: #666;
+  color: #6b7280;
   border-bottom: 3px solid transparent;
   margin-bottom: -2px;
   transition: all 0.2s;
+  font-family: inherit;
 }
-.marge-tab:hover { color: #6D071A; }
+
+.marge-tab:hover { color: #6D071A; background: #fafafa; }
 .marge-tab.active { color: #6D071A; border-bottom-color: #6D071A; }
-.marge-tab-content { display: none; }
+
+.marge-tab-content { display: none; padding: 24px 28px; flex: 1; }
 .marge-tab-content.active { display: block; }
 
-/* Inputs jaunes (saisie) */
+/* ========================================
+   INPUTS (jaune saisie / gris calculé)
+======================================== */
 .marge-input-yellow {
-  background: #FFF2CC !important;
-  border: 1px solid #d0c48a !important;
-  padding: 8px 12px !important;
-  border-radius: 4px !important;
-  font-size: 13px !important;
+  background: #FFF8E1 !important;
+  border: 1.5px solid #dfc87a !important;
+  padding: 9px 12px !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
   width: 100%;
-  max-width: 140px;
+  max-width: 150px;
   box-sizing: border-box;
+  font-family: inherit;
+  transition: all 0.2s;
 }
+
 .marge-input-yellow:focus {
   outline: none;
   border-color: #6D071A !important;
-  box-shadow: 0 0 0 2px rgba(109,7,26,0.2);
+  box-shadow: 0 0 0 3px rgba(109,7,26,0.12);
 }
 
-/* Inputs gris (calculé) */
 .marge-input-gray {
-  background: #E5E5E5 !important;
-  border: 1px solid #d1d5db !important;
-  padding: 8px 12px !important;
-  border-radius: 4px !important;
-  font-size: 13px !important;
-  max-width: 140px;
+  background: #f1f5f9 !important;
+  border: 1.5px solid #e2e8f0 !important;
+  padding: 9px 12px !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  max-width: 150px;
   box-sizing: border-box;
-  color: #374151;
+  color: #1e293b;
+  font-weight: 600;
+  font-family: inherit;
 }
 
-/* Blocs LOT */
-.marge-lots-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
-.marge-lot-block {
-  border: 1px solid #e5e5e5;
-  border-radius: 8px;
-  padding: 16px;
-  background: #fafafa;
+/* ========================================
+   ONGLET LOT(S) — LAYOUT
+======================================== */
+.marge-lots-grid {
+  display: block;
 }
-.marge-lot-block h4 { color: #6D071A; margin-bottom: 12px; font-size: 16px; }
-.marge-section { margin-bottom: 20px; }
-.marge-section strong { display: block; margin-bottom: 10px; font-size: 13px; }
-.marge-row {
+
+.marge-lots-page {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* ---- SECTION DÉCISION (pleine largeur, haut) ---- */
+.marge-decision {
+  width: 100%;
+}
+
+.decision-box {
+  background: linear-gradient(135deg, #6D071A 0%, #9B1030 100%);
+  border: none;
+  border-radius: 14px;
+  padding: 24px 28px;
+  width: 100%;
+  box-shadow: 0 6px 20px rgba(109,7,26,0.3);
+}
+
+.decision-box-header {
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.decision-box-kpis {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.decision-kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: rgba(255,255,255,0.10);
+  padding: 14px 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.decision-kpi .label { font-size: 12px; color: rgba(255,255,255,0.65); font-weight: 500; }
+.decision-kpi .value { font-size: 20px; font-weight: 700; color: #fff; }
+
+.decision-badge {
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  margin-left: auto;
+}
+
+.decision-badge.is-red,
+.decision-badge.no-go { background: #fecaca; color: #991b1b; border: 2px solid #dc2626; }
+.decision-badge.is-orange,
+.decision-badge.reflexion,
+.decision-badge.reflexion2,
+.decision-badge.orange { background: #fef3c7; color: #92400e; border: 2px solid #d97706; }
+.decision-badge.is-green,
+.decision-badge.go { background: #bbf7d0; color: #166534; border: 2px solid #16a34a; }
+
+.decision-criteres {
+  font-size: 12px;
+  color: rgba(255,255,255,0.50);
+  line-height: 1.8;
+}
+
+/* ---- LOTS WRAPPER ---- */
+.lots-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* ---- LOT CONTAINER (carte blanche) ---- */
+.lot-container {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  overflow: hidden;
+  border: none;
+  padding: 0;
+}
+
+.lot-container .lot-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 24px;
+  background: #f8fafc;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.lot-container .lot-header h4 {
+  font-size: 17px;
+  color: #1e293b;
+  margin: 0;
+  font-weight: 700;
+}
+
+/* ---- GRILLE 3 COLONNES PAR LOT ---- */
+.lot-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  padding: 20px;
+}
+
+.lot-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ---- SECTIONS DANS LES COLONNES ---- */
+.lot-section {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.lot-section h5 {
+  margin: 0;
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.lot-section .section-body {
+  padding: 14px;
+}
+
+/* Couleurs headers de section */
+.section-descriptifs h5 { background: #4472c4; }
+.section-params h5     { background: #5b9bd5; }
+.section-vente h5      { background: #70ad47; }
+.section-travaux h5    { background: #ed7d31; }
+.section-marges h5     { background: #6D071A; }
+
+/* Lignes champ label+input dans les sections */
+.lot-section .marge-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.lot-section .marge-row:last-child { margin-bottom: 0; }
+
+.lot-section .marge-row label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lot-section .marge-row input,
+.lot-section .marge-row select {
+  flex: 0 0 auto;
+  width: 130px;
+}
+
+/* Ligne total surlignée */
+.marge-row-total input.marge-input-gray {
+  background: #6D071A !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  border-color: #6D071A !important;
+}
+
+/* ---- SECTION FRAIS DIVERS (pleine largeur) ---- */
+.frais-section {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+
+.frais-header {
+  padding: 14px 24px;
+  background: #f8fafc;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.frais-header h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.frais-body {
+  padding: 20px 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 10px 24px;
+}
+
+.frais-body .marge-row {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 8px;
-  flex-wrap: wrap;
 }
-.marge-row label { min-width: 180px; font-size: 12px; }
-.marge-row input, .marge-row select { flex: 0 0 auto; }
-.marge-out { font-size: 13px; color: #374151; margin-left: 8px; }
-.marge-frais-divers { background: #f9f9f9; padding: 16px; border-radius: 8px; margin-top: 24px; }
-.marge-out-frais { font-size: 13px; color: #374151; margin-left: 8px; }
 
-/* Récap */
-.marge-recap-block { margin-bottom: 24px; border: 1px solid #e5e5e5; border-radius: 8px; overflow: hidden; }
-.marge-recap-block strong { display: block; padding: 12px; background: #f5f5f5; font-size: 14px; }
-.marge-recap-row {
-  display: grid;
-  grid-template-columns: 280px repeat(5, minmax(100px, 1fr)) 140px;
-  gap: 8px;
-  padding: 8px 12px;
-  border-bottom: 1px solid #eee;
+.frais-body .marge-row label {
+  flex: 1;
   font-size: 13px;
-  align-items: center;
+  font-weight: 500;
+  color: #374151;
+  min-width: 180px;
 }
-.marge-recap-row:last-child { border-bottom: none; }
-.marge-recap-row .marge-total { font-weight: 700; }
-.marge-neg { color: #dc2626 !important; }
-.marge-decision-zone {
-  margin-top: 32px;
-  padding: 24px;
-  background: #f9f9f9;
-  border-radius: 12px;
-  border: 2px solid #e5e5e5;
-}
-.marge-legend { font-size: 14px; margin-bottom: 12px; }
-.marge-decision-box {
-  padding: 16px 24px;
-  border-radius: 8px;
-  font-size: 18px;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 16px;
-}
-.marge-decision-box.no-go { background: #fecaca; color: #991b1b; border: 2px solid #dc2626; }
-.marge-decision-box.reflexion,
-.marge-decision-box.reflexion2 { background: #fef3c7; color: #92400e; border: 2px solid #d97706; }
-.marge-decision-box.go { background: #bbf7d0; color: #166534; border: 2px solid #16a34a; }
-.marge-kpi-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 14px; }
-.marge-criteres { margin-top: 16px; font-size: 13px; }
-.marge-criteres p { margin: 4px 0; }
 
-/* Barre d'actions */
-.marge-actions { display: flex; gap: 12px; margin-top: auto; padding-top: 24px; border-top: 1px solid #e5e5e5; }
+/* ========================================
+   BARRE D'ACTIONS
+======================================== */
+.marge-actions {
+  display: flex;
+  gap: 12px;
+  padding: 18px 28px;
+  background: #fff;
+  border-top: 1px solid #e5e7eb;
+  margin-top: auto;
+}
+
 .marge-btn {
-  padding: 12px 24px;
+  padding: 11px 22px;
   border: none;
   border-radius: 8px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
+  font-family: inherit;
 }
+
 .marge-btn-primary { background: #6D071A; color: #fff; }
 .marge-btn-primary:hover { background: #8B0920; transform: translateY(-1px); }
 .marge-btn-secondary { background: #e5e5e5; color: #333; }
@@ -214,16 +453,100 @@
 .marge-btn-pdf-active { background: #FFB800; color: #111; }
 .marge-btn-pdf-active:hover { background: #e6a600; transform: translateY(-1px); }
 
-/* Modal */
+/* ========================================
+   ONGLET RÉCAP
+======================================== */
+.marge-recap-block {
+  margin-bottom: 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.marge-recap-block strong {
+  display: block;
+  padding: 12px 16px;
+  background: #f8fafc;
+  font-size: 13px;
+  color: #1e293b;
+  border-bottom: 1px solid #e5e7eb;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.marge-recap-row {
+  display: grid;
+  grid-template-columns: 280px repeat(5, minmax(100px, 1fr)) 140px;
+  gap: 8px;
+  padding: 10px 14px;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 13px;
+  align-items: center;
+}
+
+.marge-recap-row:last-child { border-bottom: none; }
+.marge-recap-row:nth-child(even) { background: #fafbfc; }
+.marge-recap-row .marge-total { font-weight: 700; }
+.marge-neg { color: #dc2626 !important; }
+
+/* Colonnes dynamiques récap */
+.marge-recap-cols2 .marge-recap-row { grid-template-columns: 1fr 140px; }
+.marge-recap-cols4 .marge-recap-row { grid-template-columns: 1fr minmax(90px,1fr) minmax(90px,1fr) 120px; }
+.marge-recap-cols5 .marge-recap-row { grid-template-columns: 1fr repeat(2, minmax(90px,1fr)) 120px; }
+.marge-recap-cols6 .marge-recap-row { grid-template-columns: 1fr repeat(3, minmax(90px,1fr)) 120px; }
+.marge-recap-cols7 .marge-recap-row { grid-template-columns: 1fr repeat(4, minmax(90px,1fr)) 120px; }
+.marge-recap-cols8 .marge-recap-row { grid-template-columns: 1fr repeat(5, minmax(90px,1fr)) 120px; }
+
+/* Zone décision dans le récap */
+.marge-decision-zone {
+  margin-top: 28px;
+  padding: 24px;
+  background: #f8fafc;
+  border-radius: 14px;
+  border: 2px solid #e5e7eb;
+}
+
+.marge-decision-box {
+  padding: 16px 24px;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.marge-decision-box.no-go { background: #fecaca; color: #991b1b; border: 2px solid #dc2626; }
+.marge-decision-box.reflexion,
+.marge-decision-box.reflexion2,
+.marge-decision-box.orange { background: #fef3c7; color: #92400e; border: 2px solid #d97706; }
+.marge-decision-box.go { background: #bbf7d0; color: #166534; border: 2px solid #16a34a; }
+
+.marge-kpi-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 14px;
+}
+
+.marge-criteres { margin-top: 16px; font-size: 13px; }
+.marge-criteres p { margin: 4px 0; }
+
+.marge-legend { font-size: 14px; margin-bottom: 12px; }
+
+/* ========================================
+   MODAL
+======================================== */
 .marge-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.55);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10000;
 }
+
 .marge-modal {
   background: #fff;
   border-radius: 16px;
@@ -232,192 +555,93 @@
   width: 90%;
   box-shadow: 0 20px 60px rgba(0,0,0,0.3);
 }
-.marge-modal h2 { color: #6D071A; margin-bottom: 24px; font-size: 24px; }
+
+.marge-modal h2 { color: #6D071A; margin-bottom: 24px; font-size: 22px; }
 .marge-modal .marge-field { margin-bottom: 16px; }
+.marge-modal .marge-field label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: #374151; }
+
 .marge-modal input, .marge-modal select {
   width: 100%;
   padding: 10px 14px;
   border: 2px solid #e5e5e5;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 14px;
   font-family: inherit;
   box-sizing: border-box;
 }
+
 .marge-modal input:focus, .marge-modal select:focus {
   outline: none;
   border-color: #6D071A;
 }
-.marge-modal-actions { display: flex; justify-content: flex-end; margin-top: 24px; gap: 12px; }
-.marge-error { background: #fecaca; color: #991b1b; padding: 12px; border-radius: 8px; font-size: 14px; margin-bottom: 16px; display: none; }
-.marge-error.visible { display: block; }
 
-/* Encadré DÉCISION (onglet LOT) */
-.decision-box-lots { margin-bottom: 24px; }
-.decision-box {
-  background: #fafafa;
-  border: 1px solid #e5e5e5;
-  border-radius: 10px;
-  padding: 16px 20px;
-  width: 100%;
-}
-.decision-box-header { font-size: 16px; font-weight: 700; color: #6D071A; margin-bottom: 12px; }
-.decision-box-kpis {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 12px;
-}
-.decision-kpi { display: flex; flex-direction: column; gap: 2px; }
-.decision-kpi .label { font-size: 12px; color: #666; }
-.decision-kpi .value { font-size: 15px; font-weight: 700; color: #111; }
-.decision-badge {
-  padding: 6px 14px;
+.marge-modal-actions { display: flex; justify-content: flex-end; margin-top: 24px; gap: 12px; }
+.marge-error {
+  background: #fecaca;
+  color: #991b1b;
+  padding: 12px;
   border-radius: 8px;
   font-size: 14px;
-  font-weight: 700;
-  margin-left: auto;
+  margin-bottom: 16px;
+  display: none;
 }
-.decision-badge.is-red,
-.decision-badge.no-go { background: #fecaca; color: #991b1b; border: 1px solid #dc2626; }
-.decision-badge.is-orange,
-.decision-badge.reflexion,
-.decision-badge.reflexion2 { background: #fef3c7; color: #92400e; border: 1px solid #d97706; }
-.decision-badge.is-green,
-.decision-badge.go { background: #bbf7d0; color: #166534; border: 1px solid #16a34a; }
-.decision-criteres { font-size: 12px; color: #666; line-height: 1.6; }
+.marge-error.visible { display: block; }
+
+/* Legacy compat */
+.decision-box-lots { width: 100%; }
 .readonly-gray {
-  background: #E5E5E5 !important;
-  border: 1px solid #d1d5db !important;
+  background: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
   color: #374151;
 }
 
-/* Récap colonnes dynamiques */
-.marge-recap-cols2 .marge-recap-row { grid-template-columns: 1fr 140px; }
-.marge-recap-cols4 .marge-recap-row { grid-template-columns: 1fr minmax(90px,1fr) minmax(90px,1fr) 120px; }
-.marge-recap-cols5 .marge-recap-row { grid-template-columns: 1fr repeat(2, minmax(90px,1fr)) 120px; }
-.marge-recap-cols6 .marge-recap-row { grid-template-columns: 1fr repeat(3, minmax(90px,1fr)) 120px; }
-.marge-recap-cols7 .marge-recap-row { grid-template-columns: 1fr repeat(4, minmax(90px,1fr)) 120px; }
-.marge-recap-cols8 .marge-recap-row { grid-template-columns: 1fr repeat(5, minmax(90px,1fr)) 120px; }
-.marge-recap-row:nth-child(even) { background: #fafafa; }
-.marge-recap-row { padding: 10px 14px; }
-
 /* ========================================
-   NOUVELLE MISE EN PAGE ONGLET LOT(S)
-   Style "application de calcul"
+   RESPONSIVE
 ======================================== */
 
-.marge-lots-page {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.marge-decision {
-  width: 100%;
-}
-
-.marge-two-cols {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  align-items: start;
-}
-
-@media (max-width: 900px) {
-  .marge-two-cols {
-    grid-template-columns: 1fr;
+/* Tablettes (<1400px) : 2 colonnes par lot */
+@media (max-width: 1400px) {
+  .lot-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .lot-column.col-ef {
+    grid-column: 1 / -1;
   }
 }
 
-/* Panneaux avec style "app" */
-.marge-lot-panel,
-.marge-frais-panel {
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 12px;
-  padding: 16px;
+/* Petits écrans (<1024px) */
+@media (max-width: 1024px) {
+  .marge-historique { width: 220px; min-width: 220px; }
+  .lot-grid { grid-template-columns: 1fr; }
+  .lot-column.col-ef { grid-column: auto; }
+  .frais-body { grid-template-columns: 1fr; }
 }
 
-.marge-lot-panel .marge-lot-block {
-  border: none;
-  background: transparent;
-  padding: 0;
-  margin-bottom: 16px;
-}
+/* Mobile (<768px) */
+@media (max-width: 768px) {
+  .marge-container { flex-direction: column; }
 
-.marge-lot-panel .marge-lot-block:last-child {
-  margin-bottom: 0;
-}
+  .marge-historique {
+    width: 100%;
+    min-width: 100%;
+    height: auto;
+    max-height: 200px;
+    position: relative;
+    top: 0;
+  }
 
-.marge-frais-panel .marge-frais-divers {
-  background: transparent;
-  padding: 0;
-  margin-top: 0;
-}
+  .marge-tab-content { padding: 16px; }
+  .marge-tabs { padding: 0 16px; }
+  .marge-actions { padding: 14px 16px; flex-wrap: wrap; }
 
-/* Inputs plus grands et lisibles (style app) */
-.marge-lots-page input,
-.marge-lots-page select {
-  height: 38px;
-  font-size: 15px;
-  padding: 8px 12px;
-  border-radius: 8px;
-}
+  .decision-box { padding: 18px; }
+  .decision-box-kpis { flex-direction: column; align-items: stretch; }
+  .decision-badge { margin-left: 0; text-align: center; }
 
-.marge-lots-page label {
-  font-size: 13px;
-  min-width: 200px;
-}
+  .lot-grid { padding: 14px; gap: 14px; }
+  .frais-body { padding: 14px; }
 
-.marge-lots-page .marge-row {
-  margin-bottom: 10px;
-  gap: 14px;
-}
-
-.marge-lots-page .marge-section {
-  margin-bottom: 18px;
-}
-
-.marge-lots-page .marge-section strong {
-  font-size: 14px;
-  color: #6D071A;
-  margin-bottom: 12px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid #eee;
-}
-
-.marge-lots-page h4 {
-  font-size: 17px;
-  margin-bottom: 14px;
-}
-
-/* Decision box dans le contexte lots-page */
-.marge-lots-page .decision-box {
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 12px;
-  padding: 18px 20px;
-}
-
-.marge-lots-page .decision-box-header {
-  font-size: 17px;
-}
-
-.marge-lots-page .decision-kpi .label {
-  font-size: 13px;
-}
-
-.marge-lots-page .decision-kpi .value {
-  font-size: 16px;
-}
-
-.marge-lots-page .decision-badge {
-  font-size: 15px;
-  padding: 8px 16px;
-}
-
-.marge-lots-page .decision-criteres {
-  font-size: 13px;
-  line-height: 1.7;
+  .lot-section .marge-row { flex-wrap: wrap; }
+  .lot-section .marge-row input,
+  .lot-section .marge-row select { width: 100%; max-width: none; }
 }

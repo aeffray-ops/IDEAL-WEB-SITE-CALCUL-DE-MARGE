@@ -211,14 +211,25 @@ const MargeCalcul = (function() {
     const commissionIHPBien = round2(lotsCalc.reduce((s, l) => s + l.margeBien, 0));
     const totalCommissionIHP = round2(commissionIHPBien + commissionIHPTravaux);
 
-    // TVA sur marge (20%) → marges nettes nettes (capture: 12k -> 10k, 20k -> 16k, total 26k) [Source](https://www.genspark.ai/api/files/s/HSErlS1e)
-    const tvaSurMargeTravaux = round2(commissionIHPTravaux * 0.20);
-    const margeNetteNetteTRV = round2(commissionIHPTravaux - tvaSurMargeTravaux);
+    // ============================================================
+    // TVA sur marge — Formules Excel exactes (régime marchand de biens)
+    // ============================================================
 
-    const tvaSurMargeBien = round2(commissionIHPBien * 0.20);
-    const margeNetteNetteBien = round2(commissionIHPBien - tvaSurMargeBien);
+    // A) TRAVAUX : la commission inclut la TVA → on divise par 1.20 pour obtenir le HT
+    //    Ex: 20 000 / 1.20 = 16 666,67 €
+    const margeNetteNetteTRV = round2(commissionIHPTravaux / 1.20);
+    const tvaSurMargeTravaux = round2(commissionIHPTravaux - margeNetteNetteTRV);
 
-    const margeNetteProjet = round2(margeNetteNetteTRV + margeNetteNetteBien); // 26k sur ton exemple [Source](https://www.genspark.ai/api/files/s/HSErlS1e)
+    // B) BIEN : base = marge brute sans travaux (section RENTABILITÉ SANS TRAVAUX)
+    //    C'est PV - PrixAchat - FraisNotaire, pas la commissionIHPBien
+    //    Ex: 32 300 * 0.20 = 6 460 → nette = 32 300 - 6 460 = 25 840 €
+    const tvaSurMargeBien = round2(margeBruteTotalSansTravaux * 0.20);
+    const margeNetteNetteBien = round2(margeBruteTotalSansTravaux - tvaSurMargeBien);
+
+    // C) TOTAL MARGE NETTE APRÈS TVA SUR MARGE
+    //    Ex: 16 666,67 + 25 840 = 42 506,67 €
+    const margeNetteProjet = round2(margeNetteNetteTRV + margeNetteNetteBien);
+    const totalMargeNetteApresTVASurMarge = margeNetteProjet;
 
     // ROI Projet Total : ton Excel affiche 11,43% dans la capture [Source](https://www.genspark.ai/api/files/s/HSErlS1e)
     // Pour être EXACT à 11,43%, il faut la formule Excel exacte de sa base.
@@ -264,6 +275,7 @@ const MargeCalcul = (function() {
 
       // Total projet
       margeNetteProjet,
+      totalMargeNetteApresTVASurMarge,
 
       // KPI
       investissementTotalPourROI,

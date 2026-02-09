@@ -26,71 +26,99 @@ const MargeUI = (function() {
   function renderLotTab(simulation, nbLots, onInput) {
     const lots = simulation.lots || [];
     const fd = simulation.fraisDivers || {};
-    
-    // Structure: marge-lots-page > decision (pleine largeur) > marge-two-cols (lot + frais)
+
     let html = '<div class="marge-lots-page">';
-    
-    // Section DÉCISION en haut
+
+    // ──── SECTION DÉCISION (pleine largeur, haut) ────
     html += '<section class="marge-decision" id="margeDecisionBoxLots"></section>';
-    
-    // Conteneur deux colonnes
-    html += '<div class="marge-two-cols">';
-    
-    // Colonne gauche: LOT(S)
-    html += '<section class="marge-lot-panel">';
+
+    // ──── LOTS (grille 3 colonnes par lot) ────
+    html += '<div class="lots-wrapper">';
+
     for (let i = 0; i < nbLots; i++) {
       const n = i + 1;
       const lot = lots[i] || {};
-      html += '<div class="marge-lot-block" data-lot="' + i + '">';
-      html += '<h4>Lot ' + n + '</h4>';
-      html += '<div class="marge-section"><strong>A) DESCRIPTIFS</strong>';
-      html += '<div class="marge-row"><label>Prix achat :</label>' + inputYellow({ id: 'lot' + n + '_prixAchat', 'data-lot': i, 'data-f': 'prixAchat', value: lot.prixAchat }) + '</div>';
-      html += '<div class="marge-row"><label>Surface (m²):</label>' + inputYellow({ id: 'lot' + n + '_surface', 'data-lot': i, 'data-f': 'surface', value: lot.surface }) + '</div>';
+
+      html += '<article class="lot-container marge-lot-block" data-lot="' + i + '">';
+      html += '<header class="lot-header"><h4>LOT ' + n + '</h4></header>';
+      html += '<div class="lot-grid">';
+
+      // ═══ COLONNE 1 : A (Descriptifs) + B (Paramètres) ═══
+      html += '<div class="lot-column col-ab">';
+
+      // A) DESCRIPTIFS
+      html += '<div class="lot-section section-descriptifs"><h5>A) Descriptifs</h5><div class="section-body">';
+      html += '<div class="marge-row"><label>Prix achat</label>' + inputYellow({ id: 'lot' + n + '_prixAchat', 'data-lot': i, 'data-f': 'prixAchat', value: lot.prixAchat }) + '</div>';
+      html += '<div class="marge-row"><label>Surface (m²)</label>' + inputYellow({ id: 'lot' + n + '_surface', 'data-lot': i, 'data-f': 'surface', value: lot.surface }) + '</div>';
       html += '<div class="marge-row"><label>Prix m²</label><input type="text" class="' + G + '" id="lot' + n + '_prixM2" readonly></div>';
       html += '<div class="marge-row"><label>Type bien</label>' + selectYellow([{ v: 'Bâti', l: 'Bâti' }, { v: 'Terrain', l: 'Terrain' }], lot.typeBien || 'Bâti', { id: 'lot' + n + '_typeBien', 'data-lot': i, 'data-f': 'typeBien' }) + '</div>';
-      html += '</div>';
-      html += '<div class="marge-section"><strong>B) PARAMÈTRES</strong>';
-      html += '<div class="marge-row"><label>Marge cible sur travaux (%):</label>' + inputYellow({ id: 'lot' + n + '_margeTrav', 'data-lot': i, 'data-f': 'margeCibleTravaux', value: lot.margeCibleTravaux ?? 15 }) + '</div>';
-      html += '<div class="marge-row"><label>Marge cible sur bien (%):</label>' + inputYellow({ id: 'lot' + n + '_margeBien', 'data-lot': i, 'data-f': 'margeCibleBien', value: lot.margeCibleBien ?? 10 }) + '</div>';
-      html += '<div class="marge-row"><label>Com AI</label>' + inputYellow({ id: 'lot' + n + '_comAI', 'data-lot': i, 'data-f': 'comAI', value: lot.comAI ?? 0 }) + '</div>';
+      html += '</div></div>';
+
+      // B) PARAMÈTRES
+      html += '<div class="lot-section section-params"><h5>B) Paramètres</h5><div class="section-body">';
+      html += '<div class="marge-row"><label>Marge cible travaux (%)</label>' + inputYellow({ id: 'lot' + n + '_margeTrav', 'data-lot': i, 'data-f': 'margeCibleTravaux', value: lot.margeCibleTravaux ?? 15 }) + '</div>';
+      html += '<div class="marge-row"><label>Marge cible bien (%)</label>' + inputYellow({ id: 'lot' + n + '_margeBien', 'data-lot': i, 'data-f': 'margeCibleBien', value: lot.margeCibleBien ?? 10 }) + '</div>';
+      html += '<div class="marge-row"><label>Com AI (%)</label>' + inputYellow({ id: 'lot' + n + '_comAI', 'data-lot': i, 'data-f': 'comAI', value: lot.comAI ?? 0 }) + '</div>';
       html += '<div class="marge-row"><label>TVA terrain</label><input type="text" class="' + G + '" id="lot' + n + '_tvaTerrain" readonly></div>';
-      html += '</div>';
-      html += '<div class="marge-section"><strong>C) PRIX DE VENTE</strong>';
+      html += '</div></div>';
+
+      html += '</div>'; // fin col-ab
+
+      // ═══ COLONNE 2 : C (Prix de vente) + D (Travaux) ═══
+      html += '<div class="lot-column col-cd">';
+
+      // C) PRIX DE VENTE
+      html += '<div class="lot-section section-vente"><h5>C) Prix de vente</h5><div class="section-body">';
       html += '<div class="marge-row"><label>PV du bien</label><input type="text" class="' + G + '" id="lot' + n + '_pvDuBien" readonly></div>';
       html += '<div class="marge-row"><label>Marge</label><input type="text" class="' + G + '" id="lot' + n + '_marge" readonly></div>';
       html += '<div class="marge-row"><label>PV IHP</label><input type="text" class="' + G + '" id="lot' + n + '_pvIHP" readonly></div>';
-      html += '</div>';
-      html += '<div class="marge-section"><strong>D) TRAVAUX</strong>';
-      html += '<div class="marge-row"><label>Montant travaux facturés HT:</label>' + inputYellow({ id: 'lot' + n + '_travauxHT', 'data-lot': i, 'data-f': 'travauxHT', value: lot.travauxHT }) + '</div>';
-      html += '<div class="marge-row"><label>TVA sur travaux</label><input type="text" class="' + G + '" id="lot' + n + '_tvaTravaux" readonly></div>';
-      html += '<div class="marge-row"><label>Montant TTC: Facture client</label><input type="text" class="' + G + '" id="lot' + n + '_travauxTTC" readonly></div>';
-      html += '</div>';
-      html += '<div class="marge-section"><strong>E) MARGES IHP</strong>';
-      html += '<div class="marge-row"><label>marge net</label><input type="text" class="' + G + '" id="lot' + n + '_margeNet" readonly></div>';
-      html += '<div class="marge-row"><label>Marge TRV</label><input type="text" class="' + G + '" id="lot' + n + '_margeTRV" readonly></div>';
-      html += '<div class="marge-row"><label>total</label><input type="text" class="' + G + '" id="lot' + n + '_totalMargeIHP" readonly></div>';
       html += '</div></div>';
+
+      // D) TRAVAUX
+      html += '<div class="lot-section section-travaux"><h5>D) Travaux</h5><div class="section-body">';
+      html += '<div class="marge-row"><label>Travaux facturés HT</label>' + inputYellow({ id: 'lot' + n + '_travauxHT', 'data-lot': i, 'data-f': 'travauxHT', value: lot.travauxHT }) + '</div>';
+      html += '<div class="marge-row"><label>TVA sur travaux</label><input type="text" class="' + G + '" id="lot' + n + '_tvaTravaux" readonly></div>';
+      html += '<div class="marge-row"><label>Montant TTC</label><input type="text" class="' + G + '" id="lot' + n + '_travauxTTC" readonly></div>';
+      html += '</div></div>';
+
+      html += '</div>'; // fin col-cd
+
+      // ═══ COLONNE 3 : E (Marges IHP) ═══
+      html += '<div class="lot-column col-ef">';
+
+      // E) MARGES IHP
+      html += '<div class="lot-section section-marges"><h5>E) Marges IHP</h5><div class="section-body">';
+      html += '<div class="marge-row"><label>Marge net</label><input type="text" class="' + G + '" id="lot' + n + '_margeNet" readonly></div>';
+      html += '<div class="marge-row"><label>Marge TRV</label><input type="text" class="' + G + '" id="lot' + n + '_margeTRV" readonly></div>';
+      html += '<div class="marge-row marge-row-total"><label>Total</label><input type="text" class="' + G + '" id="lot' + n + '_totalMargeIHP" readonly></div>';
+      html += '</div></div>';
+
+      html += '</div>'; // fin col-ef
+
+      html += '</div>'; // fin lot-grid
+      html += '</article>'; // fin lot-container
     }
-    html += '</section>'; // fin marge-lot-panel
-    
-    // Colonne droite: FRAIS DIVERS
-    html += '<section class="marge-frais-panel">';
-    html += '<div class="marge-section marge-frais-divers"><strong>F) FRAIS DIVERS (PROJET)</strong>';
-    html += '<div class="marge-row"><label>Prix d\'achat total (somme des lots)</label><input type="text" class="' + G + '" id="prix_achat_total" readonly></div>';
+
+    html += '</div>'; // fin lots-wrapper
+
+    // ──── FRAIS DIVERS (pleine largeur, après les lots) ────
+    html += '<section class="frais-section">';
+    html += '<header class="frais-header"><h3>F) Frais divers (Projet)</h3></header>';
+    html += '<div class="frais-body">';
+    html += '<div class="marge-row"><label>Prix d\'achat total</label><input type="text" class="' + G + '" id="prix_achat_total" readonly></div>';
     html += '<div class="marge-row"><label>Taux notaire (%)</label>' + inputYellow({ id: 'notaire_pct', 'data-fd': 'notairePct', value: fd.notairePct ?? 3 }) + '</div>';
     html += '<div class="marge-row"><label>Frais de notaire (€)</label><input type="text" class="' + G + '" id="frais_notaire" readonly></div>';
     html += '<div class="marge-row"><label>Frais géomètre-expert (€)</label>' + inputYellow({ id: 'frais_geo', 'data-fd': 'fraisGeo', value: fd.fraisGeo }) + '</div>';
     html += '<div class="marge-row"><label>Diagnostics immobiliers (€)</label>' + inputYellow({ id: 'frais_diag', 'data-fd': 'fraisDiag', value: fd.fraisDiag }) + '</div>';
     html += '<div class="marge-row"><label>Frais architecte / juridique (€)</label>' + inputYellow({ id: 'frais_archi', 'data-fd': 'fraisArchiJuri', value: fd.fraisArchiJuri }) + '</div>';
-    html += '<div class="marge-row"><label>Honoraires agents immobilier (€)</label>' + inputYellow({ id: 'honoraires_ai', 'data-fd': 'honorairesAI', value: fd.honorairesAI ?? simulation.honorairesAgentsImmo ?? 0 }) + '</div>';
+    html += '<div class="marge-row"><label>Honoraires agents immo (€)</label>' + inputYellow({ id: 'honoraires_ai', 'data-fd': 'honorairesAI', value: fd.honorairesAI ?? simulation.honorairesAgentsImmo ?? 0 }) + '</div>';
     html += '<div class="marge-row"><label>Total frais divers (€)</label><input type="text" class="' + G + '" id="total_frais_divers" readonly></div>';
     html += '<div class="marge-row"><label>Coût total acquisition (€)</label><input type="text" class="' + G + '" id="cout_total_acquisition" readonly></div>';
     html += '</div>';
-    html += '</section>'; // fin marge-frais-panel
-    
-    html += '</div>'; // fin marge-two-cols
+    html += '</section>'; // fin frais-section
+
     html += '</div>'; // fin marge-lots-page
-    
+
     return html;
   }
 
