@@ -35,7 +35,7 @@ const MargePDF = (function() {
     // ── CSS ultra-compact pour tenir sur 1 page A4 ──
     var s = '<style>' +
       '*{margin:0;padding:0;box-sizing:border-box}' +
-      '.p{font-family:Helvetica,Arial,sans-serif;color:#1e293b;padding:14px 18px;font-size:8.5px;line-height:1.35}' +
+      '.p{font-family:Helvetica,Arial,sans-serif;color:#1e293b;padding:14px 18px;font-size:8.5px;line-height:1.35;background:#fff}' +
 
       // Header
       '.hd{display:flex;justify-content:space-between;align-items:center;padding-bottom:8px;margin-bottom:8px;border-bottom:2.5px solid #6D071A}' +
@@ -162,7 +162,7 @@ const MargePDF = (function() {
 
     // ── Rendu PDF ──
     var wrap = document.createElement('div');
-    wrap.style.cssText = 'position:absolute;left:-9999px;top:0;width:210mm;';
+    wrap.style.cssText = 'position:fixed;left:-9999px;top:0;z-index:-100;width:210mm;background:#fff;';
     wrap.innerHTML = s + h;
     document.body.appendChild(wrap);
     var el = wrap.querySelector('#pdf');
@@ -171,16 +171,18 @@ const MargePDF = (function() {
       margin: [5, 6, 5, 6],
       filename: 'Rentabilite - ' + (nom||'projet').replace(/[^\w\s\-àâäéèêëïîôùûüç]/gi,'') + ' - ' + (ville||'ville').replace(/[^\w\s\-àâäéèêëïîôùûüç]/gi,'') + '.pdf',
       image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true, logging: false },
+      html2canvas: { scale: 2, useCORS: true, logging: false, letterRendering: true },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
       pagebreak: { mode: ['avoid-all'] }
     };
 
-    html2pdf().set(opt).from(el).save().then(function() {
-      document.body.removeChild(wrap);
-    }).catch(function() {
-      document.body.removeChild(wrap);
-    });
+    setTimeout(function() {
+      html2pdf().set(opt).from(el).save().then(function() {
+        document.body.removeChild(wrap);
+      }).catch(function() {
+        document.body.removeChild(wrap);
+      });
+    }, 500);
     return true;
   }
 
